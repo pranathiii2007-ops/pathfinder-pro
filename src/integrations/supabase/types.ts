@@ -65,6 +65,33 @@ export type Database = {
         }
         Relationships: []
       }
+      user_preferences: {
+        Row: {
+          academic_stage: string | null
+          created_at: string
+          id: string
+          selected_stream: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          academic_stage?: string | null
+          created_at?: string
+          id?: string
+          selected_stream?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          academic_stage?: string | null
+          created_at?: string
+          id?: string
+          selected_stream?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_progress: {
         Row: {
           completed: boolean

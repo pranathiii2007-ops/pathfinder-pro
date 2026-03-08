@@ -1,14 +1,12 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Footprints, GraduationCap, BookOpen, Briefcase, MapPin } from "lucide-react";
+import { ArrowRight, Footprints, GraduationCap, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 
 const stages = [
   { title: "After 10th", desc: "Choose your stream — Science, Commerce, Arts, or Diploma", icon: GraduationCap, href: "/streams", color: "gradient-primary" },
   { title: "After Intermediate", desc: "Branches, specializations & entrance exams", icon: BookOpen, href: "/intermediate", color: "gradient-secondary" },
-  { title: "Career Paths", desc: "Detailed career options with salary & growth data", icon: Briefcase, href: "/careers", color: "gradient-accent" },
-  { title: "Find Colleges", desc: "Top colleges across India filtered by course & location", icon: MapPin, href: "/colleges", color: "gradient-primary" },
 ];
 
 export default function Landing() {
@@ -43,18 +41,6 @@ export default function Landing() {
               Guided career discovery for students — from choosing your stream after 10th to landing your dream career.
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <Link to="/streams">
-                <Button size="lg" className="gradient-primary text-primary-foreground gap-2 px-8">
-                  Start Your Journey <ArrowRight className="w-5 h-5" />
-                </Button>
-              </Link>
-            </motion.div>
           </div>
         </div>
       </section>
