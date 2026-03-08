@@ -15,7 +15,7 @@ import StreamDetail from "./pages/StreamDetail";
 import Intermediate from "./pages/Intermediate";
 import Careers from "./pages/Careers";
 import CareerDetail from "./pages/CareerDetail";
-import Colleges from "./pages/Colleges";
+
 import Internships from "./pages/Internships";
 import Courses from "./pages/Courses";
 import NotFound from "./pages/NotFound";
