@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, IndianRupee, TrendingUp, GraduationCap, Building2, Landmark, BookOpen, Check, Briefcase, Clock, Star, Users } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
+import { getInternshipsByCareer } from "@/data/internships";
 
 const careerDetails: Record<string, {
   title: string;
