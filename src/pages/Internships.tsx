@@ -172,6 +172,37 @@ export default function Internships() {
             </TabsList>
 
             <TabsContent value="listings">
+              {/* Smart Recommendations */}
+              {recommendedInternships.length > 0 && !careerFilter && !hasActiveFilters && (
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Sparkles className="w-5 h-5 text-accent" />
+                    <h2 className="font-bold text-lg">Recommended for You</h2>
+                    <span className="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full">Based on your interests</span>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    {recommendedInternships.map((item, i) => (
+                      <motion.div key={"rec-" + item.title + item.company} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-card rounded-xl p-5 border-2 border-accent/30 hover-lift relative overflow-hidden">
+                        <div className="absolute top-0 right-0 bg-accent/10 text-accent text-[10px] font-bold px-2 py-0.5 rounded-bl-lg">⭐ FOR YOU</div>
+                        <h3 className="text-base font-bold mb-1">{item.title}</h3>
+                        <p className="text-primary font-medium text-sm mb-2">{item.company}</p>
+                        <div className="flex flex-wrap gap-2 text-xs text-muted-foreground mb-3">
+                          <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{item.location}</span>
+                          <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{item.duration}</span>
+                          <span className="flex items-center gap-1"><Briefcase className="w-3 h-3" />{item.stipend}</span>
+                        </div>
+                        <a href={item.applyUrl} target="_blank" rel="noopener noreferrer">
+                          <Button size="sm" className="gradient-primary text-primary-foreground gap-1 text-xs h-8">
+                            Apply Now <ExternalLink className="w-3 h-3" />
+                          </Button>
+                        </a>
+                      </motion.div>
+                    ))}
+                  </div>
+                  <div className="border-b border-border mb-6" />
+                </motion.div>
+              )}
+
               {/* Filters */}
               <div className="flex flex-wrap gap-3 mb-6 items-center">
                 <div className="relative flex-1 min-w-[200px] max-w-sm">
