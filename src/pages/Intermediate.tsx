@@ -37,11 +37,11 @@ const commercePaths = [
 ];
 
 const artsPaths = [
-  { name: "Law (LLB / BA LLB)", path: "CLAT → 5-year BA LLB or 3-year LLB", career: "Advocate, Corporate Lawyer, Judge", salary: "₹5-30 LPA" },
-  { name: "Civil Services (IAS/IPS)", path: "Graduation → UPSC CSE → Training", career: "IAS, IPS, IFS, IRS Officer", salary: "₹8-20 LPA + Perks" },
-  { name: "Journalism (BJMC)", path: "BJMC → Media industry / PG Diploma", career: "Journalist, Anchor, Editor, PR", salary: "₹4-15 LPA" },
-  { name: "Psychology (BA → MA → MPhil)", path: "BA Psychology → MA → RCI License", career: "Psychologist, Counselor, Therapist", salary: "₹4-15 LPA" },
-  { name: "Design (B.Des / NID)", path: "NID DAT / NIFT → B.Des", career: "UX Designer, Fashion Designer, Graphic Designer", salary: "₹5-20 LPA" },
+  { name: "Law (LLB / BA LLB)", path: "CLAT → 5-year BA LLB or 3-year LLB", career: "Advocate, Corporate Lawyer, Judge", salary: "₹5-30 LPA", href: "/careers/law" },
+  { name: "Civil Services (IAS/IPS)", path: "Graduation → UPSC CSE → Training", career: "IAS, IPS, IFS, IRS Officer", salary: "₹8-20 LPA + Perks", href: "/careers/civil-services" },
+  { name: "Journalism (BJMC)", path: "BJMC → Media industry / PG Diploma", career: "Journalist, Anchor, Editor, PR", salary: "₹4-15 LPA", href: "/careers/journalism" },
+  { name: "Psychology (BA → MA → MPhil)", path: "BA Psychology → MA → RCI License", career: "Psychologist, Counselor, Therapist", salary: "₹4-15 LPA", href: "/careers/psychology" },
+  { name: "Design (B.Des / NID)", path: "NID DAT / NIFT → B.Des", career: "UX Designer, Fashion Designer, Graphic Designer", salary: "₹5-20 LPA", href: "/careers/design" },
 ];
 
 export default function Intermediate() {
