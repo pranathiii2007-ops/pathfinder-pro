@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
-import { Briefcase, Clock, MapPin, ExternalLink, Rocket, GraduationCap, FileText, CheckCircle2, Target, X } from "lucide-react";
+import { Briefcase, Clock, MapPin, ExternalLink, Rocket, GraduationCap, FileText, CheckCircle2, Target, X, Search, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { liveInternships } from "@/data/internships";
 
 const roadmapSteps = [
@@ -55,17 +57,36 @@ const careerLabels: Record<string, string> = {
   "cyber-security": "Cyber Security",
 };
 
+// Extract unique locations and durations for filters
+const allLocations = [...new Set(liveInternships.map(i => i.location))].sort();
+const allDurations = [...new Set(liveInternships.map(i => i.duration))].sort();
+
 export default function Internships() {
   const [searchParams, setSearchParams] = useSearchParams();
   const careerFilter = searchParams.get("career");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [locationFilter, setLocationFilter] = useState("all");
+  const [durationFilter, setDurationFilter] = useState("all");
 
-  const filteredInternships = careerFilter
-    ? liveInternships.filter(i => i.tags.includes(careerFilter))
-    : liveInternships;
+  const filteredInternships = liveInternships.filter(i => {
+    if (careerFilter && !i.tags.includes(careerFilter)) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      if (!i.title.toLowerCase().includes(q) && !i.company.toLowerCase().includes(q)) return false;
+    }
+    if (locationFilter !== "all" && i.location !== locationFilter) return false;
+    if (durationFilter !== "all" && i.duration !== durationFilter) return false;
+    return true;
+  });
 
-  const clearFilter = () => {
+  const clearAllFilters = () => {
     setSearchParams({});
+    setSearchQuery("");
+    setLocationFilter("all");
+    setDurationFilter("all");
   };
+
+  const hasActiveFilters = !!careerFilter || !!searchQuery || locationFilter !== "all" || durationFilter !== "all";
 
   return (
     <div className="min-h-screen bg-background">
@@ -92,17 +113,60 @@ export default function Internships() {
             </TabsList>
 
             <TabsContent value="listings">
+              {/* Filters */}
+              <div className="flex flex-wrap gap-3 mb-6 items-center">
+                <div className="relative flex-1 min-w-[200px] max-w-sm">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search by role or company..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-9"
+                  />
+                </div>
+                <Select value={locationFilter} onValueChange={setLocationFilter}>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Location" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Locations</SelectItem>
+                    {allLocations.map(loc => (
+                      <SelectItem key={loc} value={loc}>{loc}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <Select value={durationFilter} onValueChange={setDurationFilter}>
+                  <SelectTrigger className="w-[160px]">
+                    <SelectValue placeholder="Duration" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Durations</SelectItem>
+                    {allDurations.map(dur => (
+                      <SelectItem key={dur} value={dur}>{dur}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {hasActiveFilters && (
+                  <Button variant="ghost" size="sm" onClick={clearAllFilters} className="gap-1 text-muted-foreground">
+                    <X className="w-3.5 h-3.5" /> Clear All
+                  </Button>
+                )}
+              </div>
+
               {careerFilter && (
                 <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-2 mb-6 justify-center">
-                  <span className="text-sm text-muted-foreground">Showing internships for:</span>
+                  <span className="text-sm text-muted-foreground">Filtered by career:</span>
                   <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-sm font-medium">
                     {careerLabels[careerFilter] || careerFilter}
-                    <button onClick={clearFilter} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
+                    <button onClick={() => setSearchParams({})} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
                       <X className="w-3.5 h-3.5" />
                     </button>
                   </span>
                 </motion.div>
               )}
+
+              <p className="text-sm text-muted-foreground mb-4">{filteredInternships.length} internship{filteredInternships.length !== 1 ? 's' : ''} found</p>
+
               <div className="grid md:grid-cols-2 gap-4">
                 {filteredInternships.map((item, i) => (
                   <motion.div key={item.title + item.company} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-card rounded-xl p-6 border border-border hover-lift">
@@ -122,8 +186,8 @@ export default function Internships() {
                 ))}
                 {filteredInternships.length === 0 && (
                   <div className="col-span-2 text-center py-12 text-muted-foreground">
-                    <p className="text-lg mb-2">No internships found for this career path.</p>
-                    <Button variant="outline" onClick={clearFilter}>View All Internships</Button>
+                    <p className="text-lg mb-2">No internships found matching your filters.</p>
+                    <Button variant="outline" onClick={clearAllFilters}>Clear All Filters</Button>
                   </div>
                 )}
               </div>
