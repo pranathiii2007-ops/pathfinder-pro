@@ -19,6 +19,7 @@ import CareerDetail from "./pages/CareerDetail";
 import Internships from "./pages/Internships";
 
 import Courses from "./pages/Courses";
+import CareerQuiz from "./pages/CareerQuiz";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -59,6 +60,7 @@ const App = () => {
               <Route path="/internships" element={<Internships />} />
               
               <Route path="/courses" element={<Courses />} />
+              <Route path="/career-quiz" element={<CareerQuiz />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
