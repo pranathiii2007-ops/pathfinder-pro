@@ -57,16 +57,25 @@ const careerLabels: Record<string, string> = {
   "cyber-security": "Cyber Security",
 };
 
-// Extract unique locations and durations for filters
-const allLocations = [...new Set(liveInternships.map(i => i.location))].sort();
-const allDurations = [...new Set(liveInternships.map(i => i.duration))].sort();
+// Stream-based groupings for filter
+const streamFilters: { label: string; careers: string[] }[] = [
+  { label: "Software / IT", careers: ["cse", "cloud-devops", "cyber-security"] },
+  { label: "Data Science / AI", careers: ["data-science", "ai-ml"] },
+  { label: "Engineering (Core)", careers: ["mechanical", "ece", "civil", "automobile", "aerospace"] },
+  { label: "Medicine / Health", careers: ["medicine", "pharmacy", "biotech", "nursing", "psychology"] },
+  { label: "Commerce / Finance", careers: ["ca", "cs", "cma", "finance"] },
+  { label: "Management / MBA", careers: ["mba", "hotel-management"] },
+  { label: "Design / Media", careers: ["design", "interior-design", "journalism"] },
+  { label: "Law", careers: ["law"] },
+  { label: "Aviation", careers: ["aviation"] },
+  { label: "Architecture", careers: ["architecture"] },
+];
 
 export default function Internships() {
   const [searchParams, setSearchParams] = useSearchParams();
   const careerFilter = searchParams.get("career");
   const [searchQuery, setSearchQuery] = useState("");
-  const [locationFilter, setLocationFilter] = useState("all");
-  const [durationFilter, setDurationFilter] = useState("all");
+  const [streamFilter, setStreamFilter] = useState("all");
 
   const filteredInternships = liveInternships.filter(i => {
     if (careerFilter && !i.tags.includes(careerFilter)) return false;
@@ -74,19 +83,20 @@ export default function Internships() {
       const q = searchQuery.toLowerCase();
       if (!i.title.toLowerCase().includes(q) && !i.company.toLowerCase().includes(q)) return false;
     }
-    if (locationFilter !== "all" && i.location !== locationFilter) return false;
-    if (durationFilter !== "all" && i.duration !== durationFilter) return false;
+    if (streamFilter !== "all") {
+      const stream = streamFilters.find(s => s.label === streamFilter);
+      if (stream && !i.tags.some(t => stream.careers.includes(t))) return false;
+    }
     return true;
   });
 
   const clearAllFilters = () => {
     setSearchParams({});
     setSearchQuery("");
-    setLocationFilter("all");
-    setDurationFilter("all");
+    setStreamFilter("all");
   };
 
-  const hasActiveFilters = !!careerFilter || !!searchQuery || locationFilter !== "all" || durationFilter !== "all";
+  const hasActiveFilters = !!careerFilter || !!searchQuery || streamFilter !== "all";
 
   return (
     <div className="min-h-screen bg-background">
@@ -124,25 +134,14 @@ export default function Internships() {
                     className="pl-9"
                   />
                 </div>
-                <Select value={locationFilter} onValueChange={setLocationFilter}>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Location" />
+                <Select value={streamFilter} onValueChange={setStreamFilter}>
+                  <SelectTrigger className="w-[200px]">
+                    <SelectValue placeholder="Stream" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Locations</SelectItem>
-                    {allLocations.map(loc => (
-                      <SelectItem key={loc} value={loc}>{loc}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <Select value={durationFilter} onValueChange={setDurationFilter}>
-                  <SelectTrigger className="w-[160px]">
-                    <SelectValue placeholder="Duration" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Durations</SelectItem>
-                    {allDurations.map(dur => (
-                      <SelectItem key={dur} value={dur}>{dur}</SelectItem>
+                    <SelectItem value="all">All Streams</SelectItem>
+                    {streamFilters.map(s => (
+                      <SelectItem key={s.label} value={s.label}>{s.label}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
