@@ -106,6 +106,7 @@ export default function CareerQuiz() {
   const [isLoading, setIsLoading] = useState(false);
   const [started, setStarted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const sendingRef = useRef(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -120,7 +121,8 @@ export default function CareerQuiz() {
   };
 
   const sendMessage = async (text: string, isStart = false) => {
-    if (!text.trim() || isLoading) return;
+    if (!text.trim() || isLoading || sendingRef.current) return;
+    sendingRef.current = true;
     setError(null);
     const userMsg: Msg = { role: "user", content: text.trim() };
     const prev = isStart ? [] : messages;
@@ -144,12 +146,13 @@ export default function CareerQuiz() {
       await streamChat({
         messages: [...prev, userMsg],
         onDelta: upsert,
-        onDone: () => setIsLoading(false),
-        onError: (msg) => { setError(msg); setIsLoading(false); },
+        onDone: () => { setIsLoading(false); sendingRef.current = false; },
+        onError: (msg) => { setError(msg); setIsLoading(false); sendingRef.current = false; },
       });
     } catch {
       setError("Connection failed. Please try again.");
       setIsLoading(false);
+      sendingRef.current = false;
     }
   };
 
