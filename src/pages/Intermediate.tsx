@@ -115,10 +115,17 @@ export default function Intermediate() {
             <TabsContent value="medical">
               <div className="grid md:grid-cols-2 gap-4">
                 {medicalPaths.map((path, i) => (
-                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-card rounded-xl p-6 border border-border hover-lift">
-                    <h3 className="font-bold text-lg mb-2">{path.name}</h3>
-                    <p className="text-muted-foreground text-sm mb-3">{path.description}</p>
-                    <span className="text-xs bg-success/10 text-success px-2 py-1 rounded-full font-medium">{path.salary}</span>
+                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+                    <Link to={path.href}>
+                      <div className="group bg-card rounded-xl p-6 border border-border hover-lift h-full">
+                        <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">{path.name}</h3>
+                        <p className="text-muted-foreground text-sm mb-3">{path.description}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs bg-success/10 text-success px-2 py-1 rounded-full font-medium">{path.salary}</span>
+                          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                        </div>
+                      </div>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
@@ -127,17 +134,22 @@ export default function Intermediate() {
             <TabsContent value="commerce">
               <div className="space-y-4">
                 {commercePaths.map((path, i) => (
-                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-card rounded-xl p-6 border border-border hover-lift">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      <div>
-                        <h3 className="font-bold text-lg">{path.name}</h3>
-                        <p className="text-muted-foreground text-sm mt-1">{path.stages}</p>
+                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+                    <Link to={path.href}>
+                      <div className="group bg-card rounded-xl p-6 border border-border hover-lift">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                          <div>
+                            <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{path.name}</h3>
+                            <p className="text-muted-foreground text-sm mt-1">{path.stages}</p>
+                          </div>
+                          <div className="flex items-center gap-4">
+                            <span className="text-xs bg-success/10 text-success px-3 py-1.5 rounded-full font-medium">{path.salary}</span>
+                            <span className="text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-full font-medium">{path.duration}</span>
+                            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex gap-4">
-                        <span className="text-xs bg-success/10 text-success px-3 py-1.5 rounded-full font-medium">{path.salary}</span>
-                        <span className="text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-full font-medium">{path.duration}</span>
-                      </div>
-                    </div>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
@@ -146,11 +158,18 @@ export default function Intermediate() {
             <TabsContent value="arts">
               <div className="space-y-4">
                 {artsPaths.map((path, i) => (
-                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-card rounded-xl p-6 border border-border hover-lift">
-                    <h3 className="font-bold text-lg mb-1">{path.name}</h3>
-                    <p className="text-muted-foreground text-sm mb-1"><strong>Path:</strong> {path.path}</p>
-                    <p className="text-muted-foreground text-sm mb-3"><strong>Careers:</strong> {path.career}</p>
-                    <span className="text-xs bg-success/10 text-success px-2 py-1 rounded-full font-medium">{path.salary}</span>
+                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+                    <Link to={path.href}>
+                      <div className="group bg-card rounded-xl p-6 border border-border hover-lift">
+                        <h3 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">{path.name}</h3>
+                        <p className="text-muted-foreground text-sm mb-1"><strong>Path:</strong> {path.path}</p>
+                        <p className="text-muted-foreground text-sm mb-3"><strong>Careers:</strong> {path.career}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs bg-success/10 text-success px-2 py-1 rounded-full font-medium">{path.salary}</span>
+                          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                        </div>
+                      </div>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
