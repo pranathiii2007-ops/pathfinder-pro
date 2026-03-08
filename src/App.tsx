@@ -17,7 +17,7 @@ import Careers from "./pages/Careers";
 import CareerDetail from "./pages/CareerDetail";
 
 import Internships from "./pages/Internships";
-import Recommendations from "./pages/Recommendations";
+
 import Courses from "./pages/Courses";
 import NotFound from "./pages/NotFound";
 
@@ -57,7 +57,7 @@ const App = () => {
               <Route path="/careers" element={<Careers />} />
               <Route path="/careers/:careerId" element={<CareerDetail />} />
               <Route path="/internships" element={<Internships />} />
-              <Route path="/recommendations" element={<Recommendations />} />
+              
               <Route path="/courses" element={<Courses />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
