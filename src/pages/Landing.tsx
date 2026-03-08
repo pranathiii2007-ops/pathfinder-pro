@@ -11,7 +11,7 @@ const stages = [
 ];
 
 export default function Landing() {
-  return (
+  const { user } = useAuth();
     <div className="min-h-screen bg-background">
       <Navbar />
 
