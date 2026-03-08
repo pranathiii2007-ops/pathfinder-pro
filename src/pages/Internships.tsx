@@ -23,16 +23,16 @@ const platforms = [
 ];
 
 const liveInternships = [
-  { title: "Software Development Intern", company: "Google", location: "Bangalore", duration: "3 months", stipend: "₹80,000/month", applyUrl: "https://careers.google.com/jobs/results/?q=intern" },
-  { title: "Data Analyst Intern", company: "Amazon", location: "Hyderabad", duration: "6 months", stipend: "₹50,000/month", applyUrl: "https://www.amazon.jobs/en/search?base_query=intern&loc_query=India" },
-  { title: "ML Research Intern", company: "Microsoft", location: "Bangalore", duration: "3 months", stipend: "₹60,000/month", applyUrl: "https://careers.microsoft.com/v2/global/en/students.html" },
-  { title: "Web Developer Intern", company: "Flipkart", location: "Bangalore", duration: "3 months", stipend: "₹40,000/month", applyUrl: "https://www.flipkartcareers.com/" },
-  { title: "DRDO Project Trainee", company: "DRDO", location: "Delhi", duration: "6 months", stipend: "₹20,000/month", applyUrl: "https://www.drdo.gov.in/drdo/opportunity/opportunity.html" },
-  { title: "Product Design Intern", company: "Swiggy", location: "Remote", duration: "3 months", stipend: "₹30,000/month", applyUrl: "https://careers.swiggy.com/" },
-  { title: "Backend Engineer Intern", company: "Razorpay", location: "Bangalore", duration: "6 months", stipend: "₹45,000/month", applyUrl: "https://razorpay.com/jobs/" },
-  { title: "Marketing Intern", company: "Zomato", location: "Gurugram", duration: "2 months", stipend: "₹25,000/month", applyUrl: "https://www.zomato.com/careers" },
-  { title: "Cloud Engineering Intern", company: "TCS", location: "Mumbai", duration: "6 months", stipend: "₹15,000/month", applyUrl: "https://ibegin.tcs.com/iBegin/jobs/internship" },
-  { title: "AI Research Intern", company: "IIT Madras", location: "Chennai", duration: "2 months", stipend: "₹15,000/month", applyUrl: "https://internshala.com/internships/internship-at-iit-madras" },
+  { title: "Software Development Intern", company: "Google", location: "Bangalore", duration: "3 months", stipend: "₹80,000/month", applyUrl: "https://www.google.com/about/careers/applications/jobs/results/?q=intern&location=India" },
+  { title: "Data Analyst Intern", company: "Amazon", location: "Hyderabad", duration: "6 months", stipend: "₹50,000/month", applyUrl: "https://www.amazon.jobs/en/search?base_query=intern&loc_query=India&country=IND" },
+  { title: "ML Research Intern", company: "Microsoft", location: "Bangalore", duration: "3 months", stipend: "₹60,000/month", applyUrl: "https://careers.microsoft.com/students/us/en/search-results?keywords=intern&location=India" },
+  { title: "Web Developer Intern", company: "Flipkart", location: "Bangalore", duration: "3 months", stipend: "₹40,000/month", applyUrl: "https://www.linkedin.com/company/flipkart/jobs/" },
+  { title: "DRDO Project Trainee", company: "DRDO", location: "Delhi", duration: "6 months", stipend: "₹20,000/month", applyUrl: "https://rac.gov.in/" },
+  { title: "Product Design Intern", company: "Swiggy", location: "Remote", duration: "3 months", stipend: "₹30,000/month", applyUrl: "https://www.linkedin.com/company/swiggy/jobs/" },
+  { title: "Backend Engineer Intern", company: "Razorpay", location: "Bangalore", duration: "6 months", stipend: "₹45,000/month", applyUrl: "https://www.linkedin.com/company/razorpay/jobs/" },
+  { title: "Marketing Intern", company: "Zomato", location: "Gurugram", duration: "2 months", stipend: "₹25,000/month", applyUrl: "https://www.linkedin.com/company/zomato/jobs/" },
+  { title: "Cloud Engineering Intern", company: "TCS", location: "Mumbai", duration: "6 months", stipend: "₹15,000/month", applyUrl: "https://www.tcs.com/careers/tcs-nextstep-portal" },
+  { title: "AI Research Intern", company: "IIT Madras", location: "Chennai", duration: "2 months", stipend: "₹15,000/month", applyUrl: "https://internshala.com/internships/internship-in-chennai" },
 ];
 
 export default function Internships() {
