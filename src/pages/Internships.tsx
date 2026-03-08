@@ -1,16 +1,13 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
-import { Briefcase, Clock, MapPin, ExternalLink, Rocket, GraduationCap, FileText, CheckCircle2, Target, X, Search, Sparkles } from "lucide-react";
+import { Briefcase, Clock, MapPin, ExternalLink, Rocket, GraduationCap, FileText, CheckCircle2, Target, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { liveInternships, type Internship } from "@/data/internships";
-import { useFavorites } from "@/hooks/useFavorites";
-import { usePreferences } from "@/hooks/usePreferences";
-import { useAuth } from "@/hooks/useAuth";
+import { liveInternships } from "@/data/internships";
 
 const roadmapSteps = [
   { step: 1, title: "Choose Your Career Role", description: "Identify 2-3 career roles you're interested in (e.g., Software Engineer, Data Scientist)", icon: Target },
@@ -60,7 +57,6 @@ const careerLabels: Record<string, string> = {
   "cyber-security": "Cyber Security",
 };
 
-// Stream-based groupings for filter
 const streamFilters: { label: string; careers: string[] }[] = [
   { label: "Software / IT", careers: ["cse", "cloud-devops", "cyber-security"] },
   { label: "Data Science / AI", careers: ["data-science", "ai-ml"] },
@@ -74,57 +70,11 @@ const streamFilters: { label: string; careers: string[] }[] = [
   { label: "Architecture", careers: ["architecture"] },
 ];
 
-// Map user stream preferences to career tags
-const streamToCareerTags: Record<string, string[]> = {
-  "MPC": ["cse", "data-science", "ai-ml", "mechanical", "ece", "civil", "automobile", "aerospace", "architecture"],
-  "PCM": ["cse", "data-science", "ai-ml", "mechanical", "ece", "civil", "automobile", "aerospace", "architecture"],
-  "BiPC": ["medicine", "pharmacy", "biotech", "nursing", "psychology"],
-  "PCB": ["medicine", "pharmacy", "biotech", "nursing", "psychology"],
-  "CEC": ["ca", "cs", "cma", "finance", "law"],
-  "Commerce": ["ca", "cs", "cma", "finance", "mba"],
-  "MEC": ["ca", "cs", "cma", "finance", "mba"],
-  "HEC": ["mba", "hotel-management", "journalism"],
-  "Arts": ["law", "journalism", "psychology", "design"],
-  "Vocational": ["design", "interior-design", "hotel-management"],
-};
-
 export default function Internships() {
   const [searchParams, setSearchParams] = useSearchParams();
   const careerFilter = searchParams.get("career");
   const [searchQuery, setSearchQuery] = useState("");
   const [streamFilter, setStreamFilter] = useState("all");
-  const { user } = useAuth();
-  const { favorites } = useFavorites();
-  const { preferences } = usePreferences();
-
-  // Build recommended internships from favorites + stream preference
-  const recommendedInternships = useMemo(() => {
-    if (!user) return [];
-
-    const relevantTags = new Set<string>();
-
-    // Add tags from favorited careers
-    favorites.forEach(careerId => relevantTags.add(careerId));
-
-    // Add tags from selected stream
-    if (preferences?.selected_stream) {
-      const streamTags = streamToCareerTags[preferences.selected_stream];
-      if (streamTags) streamTags.forEach(t => relevantTags.add(t));
-    }
-
-    if (relevantTags.size === 0) return [];
-
-    // Score internships by how many relevant tags they match
-    const scored = liveInternships
-      .map(i => ({
-        internship: i,
-        score: i.tags.filter(t => relevantTags.has(t)).length,
-      }))
-      .filter(s => s.score > 0)
-      .sort((a, b) => b.score - a.score);
-
-    return scored.slice(0, 6).map(s => s.internship);
-  }, [user, favorites, preferences]);
 
   const filteredInternships = liveInternships.filter(i => {
     if (careerFilter && !i.tags.includes(careerFilter)) return false;
@@ -172,37 +122,6 @@ export default function Internships() {
             </TabsList>
 
             <TabsContent value="listings">
-              {/* Smart Recommendations */}
-              {recommendedInternships.length > 0 && !careerFilter && !hasActiveFilters && (
-                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Sparkles className="w-5 h-5 text-accent" />
-                    <h2 className="font-bold text-lg">Recommended for You</h2>
-                    <span className="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full">Based on your interests</span>
-                  </div>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                    {recommendedInternships.map((item, i) => (
-                      <motion.div key={"rec-" + item.title + item.company} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-card rounded-xl p-5 border-2 border-accent/30 hover-lift relative overflow-hidden">
-                        <div className="absolute top-0 right-0 bg-accent/10 text-accent text-[10px] font-bold px-2 py-0.5 rounded-bl-lg">⭐ FOR YOU</div>
-                        <h3 className="text-base font-bold mb-1">{item.title}</h3>
-                        <p className="text-primary font-medium text-sm mb-2">{item.company}</p>
-                        <div className="flex flex-wrap gap-2 text-xs text-muted-foreground mb-3">
-                          <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{item.location}</span>
-                          <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{item.duration}</span>
-                          <span className="flex items-center gap-1"><Briefcase className="w-3 h-3" />{item.stipend}</span>
-                        </div>
-                        <a href={item.applyUrl} target="_blank" rel="noopener noreferrer">
-                          <Button size="sm" className="gradient-primary text-primary-foreground gap-1 text-xs h-8">
-                            Apply Now <ExternalLink className="w-3 h-3" />
-                          </Button>
-                        </a>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <div className="border-b border-border mb-6" />
-                </motion.div>
-              )}
-
               {/* Filters */}
               <div className="flex flex-wrap gap-3 mb-6 items-center">
                 <div className="relative flex-1 min-w-[200px] max-w-sm">
