@@ -106,6 +106,7 @@ export default function CareerQuiz() {
   const [isLoading, setIsLoading] = useState(false);
   const [started, setStarted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const sendingRef = useRef(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
