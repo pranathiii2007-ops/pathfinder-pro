@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Menu, X, User, LogOut } from "lucide-react";
+import { Footprints, Menu, X, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import {
@@ -13,11 +13,12 @@ import {
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/streams", label: "Explore Streams" },
-  { href: "/careers", label: "Career Paths" },
-  { href: "/colleges", label: "Find Colleges" },
+  { href: "/streams", label: "After 10th" },
+  { href: "/intermediate", label: "After Inter" },
+  { href: "/btech", label: "B.Tech/Degree" },
+  { href: "/colleges", label: "Colleges" },
   { href: "/internships", label: "Internships" },
-  { href: "/courses", label: "Courses" },
+  { href: "/careers", label: "Career Paths" },
 ];
 
 export function Navbar() {
@@ -30,12 +31,12 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 hover-scale">
-            <GraduationCap className="w-8 h-8 text-primary" />
-            <span className="font-bold text-xl text-gradient-primary">CareerPath</span>
+            <Footprints className="w-7 h-7 text-primary" />
+            <span className="font-bold text-xl text-gradient-primary">Future Steps</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden xl:flex items-center gap-5">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -51,7 +52,7 @@ export function Navbar() {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-3">
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -61,6 +62,12 @@ export function Navbar() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="bg-card">
+                  <DropdownMenuItem asChild>
+                    <Link to="/dashboard" className="gap-2 cursor-pointer">
+                      <User className="w-4 h-4" />
+                      Dashboard
+                    </Link>
+                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={logout} className="gap-2 cursor-pointer">
                     <LogOut className="w-4 h-4" />
                     Logout
@@ -70,37 +77,27 @@ export function Navbar() {
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="ghost" size="sm">
-                    Login
-                  </Button>
+                  <Button variant="ghost" size="sm">Login</Button>
                 </Link>
                 <Link to="/signup">
-                  <Button size="sm" className="gradient-primary text-primary-foreground">
-                    Get Started
-                  </Button>
+                  <Button size="sm" className="gradient-primary text-primary-foreground">Get Started</Button>
                 </Link>
               </>
             )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
+          <button className="xl:hidden p-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden overflow-hidden"
+              className="xl:hidden overflow-hidden"
             >
               <div className="py-4 space-y-2">
                 {navLinks.map((link) => (
@@ -109,9 +106,7 @@ export function Navbar() {
                     to={link.href}
                     onClick={() => setIsOpen(false)}
                     className={`block py-2 px-4 rounded-lg transition-colors ${
-                      location.pathname === link.href
-                        ? "bg-primary/10 text-primary"
-                        : "hover:bg-muted"
+                      location.pathname === link.href ? "bg-primary/10 text-primary" : "hover:bg-muted"
                     }`}
                   >
                     {link.label}
@@ -119,28 +114,23 @@ export function Navbar() {
                 ))}
                 <div className="pt-4 border-t border-border space-y-2">
                   {user ? (
-                    <Button
-                      variant="outline"
-                      className="w-full justify-start gap-2"
-                      onClick={() => {
-                        logout();
-                        setIsOpen(false);
-                      }}
-                    >
-                      <LogOut className="w-4 h-4" />
-                      Logout ({user.name})
-                    </Button>
+                    <>
+                      <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+                        <Button variant="outline" className="w-full justify-start gap-2">
+                          <User className="w-4 h-4" />Dashboard
+                        </Button>
+                      </Link>
+                      <Button variant="outline" className="w-full justify-start gap-2" onClick={() => { logout(); setIsOpen(false); }}>
+                        <LogOut className="w-4 h-4" />Logout
+                      </Button>
+                    </>
                   ) : (
                     <>
                       <Link to="/login" onClick={() => setIsOpen(false)}>
-                        <Button variant="outline" className="w-full">
-                          Login
-                        </Button>
+                        <Button variant="outline" className="w-full">Login</Button>
                       </Link>
                       <Link to="/signup" onClick={() => setIsOpen(false)}>
-                        <Button className="w-full gradient-primary text-primary-foreground">
-                          Get Started
-                        </Button>
+                        <Button className="w-full gradient-primary text-primary-foreground">Get Started</Button>
                       </Link>
                     </>
                   )}

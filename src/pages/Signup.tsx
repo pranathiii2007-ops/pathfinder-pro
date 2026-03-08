@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { GraduationCap, Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
+import { Footprints, Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -50,7 +50,7 @@ export default function Signup() {
           transition={{ duration: 0.5 }}
           className="text-center text-secondary-foreground max-w-md"
         >
-          <GraduationCap className="w-24 h-24 mx-auto mb-6 animate-float" />
+          <Footprints className="w-24 h-24 mx-auto mb-6 animate-float" />
           <h2 className="text-3xl font-bold mb-4">
             Start Your Journey
           </h2>
@@ -70,8 +70,8 @@ export default function Signup() {
           className="w-full max-w-md"
         >
           <Link to="/" className="flex items-center gap-2 mb-8 hover-scale inline-flex">
-            <GraduationCap className="w-8 h-8 text-primary" />
-            <span className="font-bold text-xl text-gradient-primary">CareerPath</span>
+            <Footprints className="w-8 h-8 text-primary" />
+            <span className="font-bold text-xl text-gradient-primary">Future Steps</span>
           </Link>
 
           <h1 className="text-3xl font-bold mb-2">Create an account</h1>

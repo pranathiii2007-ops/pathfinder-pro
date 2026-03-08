@@ -9,8 +9,11 @@ import { SplashScreen } from "@/components/SplashScreen";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
 import Streams from "./pages/Streams";
 import StreamDetail from "./pages/StreamDetail";
+import Intermediate from "./pages/Intermediate";
+import BTech from "./pages/BTech";
 import Careers from "./pages/Careers";
 import Colleges from "./pages/Colleges";
 import Internships from "./pages/Internships";
@@ -46,8 +49,11 @@ const App = () => {
               <Route path="/" element={<Landing />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/streams" element={<Streams />} />
               <Route path="/streams/:streamId" element={<StreamDetail />} />
+              <Route path="/intermediate" element={<Intermediate />} />
+              <Route path="/btech" element={<BTech />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/careers/:careerId" element={<Careers />} />
               <Route path="/colleges" element={<Colleges />} />
