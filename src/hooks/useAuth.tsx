@@ -1,4 +1,6 @@
 import { useState, useEffect, createContext, useContext, ReactNode } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 interface User {
   id: string;
@@ -16,60 +18,55 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+function mapUser(supabaseUser: SupabaseUser): User {
+  return {
+    id: supabaseUser.id,
+    name: supabaseUser.user_metadata?.display_name || supabaseUser.user_metadata?.name || supabaseUser.email?.split("@")[0] || "",
+    email: supabaseUser.email || "",
+  };
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("careerpath_user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setIsLoading(false);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setUser(mapUser(session.user));
+      } else {
+        setUser(null);
+      }
+      setIsLoading(false);
+    });
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setUser(mapUser(session.user));
+      }
+      setIsLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    const users = JSON.parse(localStorage.getItem("careerpath_users") || "[]");
-    const foundUser = users.find(
-      (u: any) => u.email === email && u.password === password
-    );
-    
-    if (foundUser) {
-      const userData = { id: foundUser.id, name: foundUser.name, email: foundUser.email };
-      setUser(userData);
-      localStorage.setItem("careerpath_user", JSON.stringify(userData));
-      return true;
-    }
-    return false;
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    return !error;
   };
 
   const signup = async (name: string, email: string, password: string): Promise<boolean> => {
-    const users = JSON.parse(localStorage.getItem("careerpath_users") || "[]");
-    const exists = users.some((u: any) => u.email === email);
-    
-    if (exists) {
-      return false;
-    }
-
-    const newUser = {
-      id: crypto.randomUUID(),
-      name,
+    const { error } = await supabase.auth.signUp({
       email,
       password,
-    };
-
-    users.push(newUser);
-    localStorage.setItem("careerpath_users", JSON.stringify(users));
-
-    const userData = { id: newUser.id, name: newUser.name, email: newUser.email };
-    setUser(userData);
-    localStorage.setItem("careerpath_user", JSON.stringify(userData));
-    return true;
+      options: { data: { display_name: name } },
+    });
+    return !error;
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await supabase.auth.signOut();
     setUser(null);
-    localStorage.removeItem("careerpath_user");
   };
 
   return (
