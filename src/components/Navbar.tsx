@@ -15,7 +15,7 @@ const navLinks = [
   { href: "/streams", label: "After 10th" },
   { href: "/intermediate", label: "After Inter" },
   { href: "/careers", label: "Career Paths" },
-  { href: "/colleges", label: "Colleges" },
+  
   { href: "/internships", label: "Internships" },
 ];
 
