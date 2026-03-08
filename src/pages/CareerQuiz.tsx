@@ -121,7 +121,8 @@ export default function CareerQuiz() {
   };
 
   const sendMessage = async (text: string, isStart = false) => {
-    if (!text.trim() || isLoading) return;
+    if (!text.trim() || isLoading || sendingRef.current) return;
+    sendingRef.current = true;
     setError(null);
     const userMsg: Msg = { role: "user", content: text.trim() };
     const prev = isStart ? [] : messages;
