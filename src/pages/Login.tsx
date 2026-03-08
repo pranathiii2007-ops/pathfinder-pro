@@ -50,8 +50,8 @@ export default function Login() {
           className="w-full max-w-md"
         >
           <Link to="/" className="flex items-center gap-2 mb-8 hover-scale inline-flex">
-            <GraduationCap className="w-8 h-8 text-primary" />
-            <span className="font-bold text-xl text-gradient-primary">CareerPath</span>
+            <Footprints className="w-8 h-8 text-primary" />
+            <span className="font-bold text-xl text-gradient-primary">Future Steps</span>
           </Link>
 
           <h1 className="text-3xl font-bold mb-2">Welcome back</h1>
