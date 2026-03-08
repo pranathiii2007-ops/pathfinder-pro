@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Footprints, GraduationCap, BookOpen } from "lucide-react";
+import { ArrowRight, Footprints, GraduationCap, BookOpen, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { useAuth } from "@/hooks/useAuth";
