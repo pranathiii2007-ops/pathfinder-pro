@@ -10,40 +10,8 @@ const stages = [
   { title: "After Intermediate", desc: "Branches, specializations & entrance exams", icon: BookOpen, href: "/intermediate", color: "gradient-secondary" },
 ];
 
-const streamToCareerTags: Record<string, string[]> = {
-  "MPC": ["cse", "data-science", "ai-ml", "mechanical", "ece", "civil"],
-  "PCM": ["cse", "data-science", "ai-ml", "mechanical", "ece", "civil"],
-  "BiPC": ["medicine", "pharmacy", "biotech", "nursing", "psychology"],
-  "PCB": ["medicine", "pharmacy", "biotech", "nursing", "psychology"],
-  "CEC": ["ca", "cs", "cma", "finance", "law"],
-  "Commerce": ["ca", "cs", "cma", "finance", "mba"],
-  "MEC": ["ca", "cs", "cma", "finance", "mba"],
-  "HEC": ["mba", "hotel-management", "journalism"],
-  "Arts": ["law", "journalism", "psychology", "design"],
-  "Vocational": ["design", "interior-design", "hotel-management"],
-};
-
 export default function Landing() {
   const { user } = useAuth();
-  const { favorites } = useFavorites();
-  const { preferences } = usePreferences();
-
-  const recommendedInternships = useMemo(() => {
-    if (!user) return [];
-    const tags = new Set<string>();
-    favorites.forEach(id => tags.add(id));
-    if (preferences?.selected_stream) {
-      const st = streamToCareerTags[preferences.selected_stream];
-      if (st) st.forEach(t => tags.add(t));
-    }
-    if (tags.size === 0) return [];
-    return liveInternships
-      .map(i => ({ internship: i, score: i.tags.filter(t => tags.has(t)).length }))
-      .filter(s => s.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 3)
-      .map(s => s.internship);
-  }, [user, favorites, preferences]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -115,51 +83,6 @@ export default function Landing() {
           </div>
         </div>
       </section>
-
-      {/* Personalized Recommendations for logged-in users */}
-      {user && recommendedInternships.length > 0 && (
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-6 h-6 text-accent" />
-                <h2 className="text-2xl font-bold">Recommended For You</h2>
-              </div>
-              <Link to="/recommendations">
-                <Button variant="outline" size="sm" className="gap-1">
-                  View All <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-            <div className="grid md:grid-cols-3 gap-4">
-              {recommendedInternships.map((item, i) => (
-                <motion.div
-                  key={item.title + item.company}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-card rounded-xl p-5 border-2 border-accent/20 hover-lift relative overflow-hidden"
-                >
-                  <div className="absolute top-0 right-0 bg-accent/10 text-accent text-[10px] font-bold px-2 py-0.5 rounded-bl-lg">⭐ FOR YOU</div>
-                  <h3 className="text-base font-bold mb-1">{item.title}</h3>
-                  <p className="text-primary font-medium text-sm mb-2">{item.company}</p>
-                  <div className="flex flex-wrap gap-2 text-xs text-muted-foreground mb-3">
-                    <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{item.location}</span>
-                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{item.duration}</span>
-                    <span className="flex items-center gap-1"><Briefcase className="w-3 h-3" />{item.stipend}</span>
-                  </div>
-                  <a href={item.applyUrl} target="_blank" rel="noopener noreferrer">
-                    <Button size="sm" className="gradient-primary text-primary-foreground gap-1 text-xs h-8">
-                      Apply Now <ExternalLink className="w-3 h-3" />
-                    </Button>
-                  </a>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {user ? (
         <section className="py-16 relative overflow-hidden">
