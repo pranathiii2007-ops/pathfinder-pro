@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Footprints, GraduationCap, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
+import { useAuth } from "@/hooks/useAuth";
 
 const stages = [
   { title: "After 10th", desc: "Choose your stream — Science, Commerce, Arts, or Diploma", icon: GraduationCap, href: "/streams", color: "gradient-primary" },
@@ -10,6 +11,7 @@ const stages = [
 ];
 
 export default function Landing() {
+  const { user } = useAuth();
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -81,26 +83,44 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-primary opacity-95" />
-        <div className="container mx-auto px-4 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mx-auto text-center text-primary-foreground"
-          >
-            <h2 className="text-3xl font-bold mb-4">Ready to Shape Your Future?</h2>
-            <p className="text-lg opacity-90 mb-8">Create a free profile to save your progress and get personalized guidance.</p>
-            <Link to="/signup">
-              <Button size="lg" variant="secondary" className="gap-2 px-8">
-                Get Started Free <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      {user ? (
+        <section className="py-16 relative overflow-hidden">
+          <div className="absolute inset-0 gradient-primary opacity-95" />
+          <div className="container mx-auto px-4 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-2xl mx-auto text-center text-primary-foreground"
+            >
+              <h2 className="text-3xl font-bold mb-4">About Future Steps</h2>
+              <p className="text-lg opacity-90">
+                Future Steps is a guided career discovery platform built for Indian students. We help you navigate every milestone — from choosing your stream after 10th, to picking the right branch after Intermediate, to landing internships and building your dream career. Your journey, simplified.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      ) : (
+        <section className="py-16 relative overflow-hidden">
+          <div className="absolute inset-0 gradient-primary opacity-95" />
+          <div className="container mx-auto px-4 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-2xl mx-auto text-center text-primary-foreground"
+            >
+              <h2 className="text-3xl font-bold mb-4">Ready to Shape Your Future?</h2>
+              <p className="text-lg opacity-90 mb-8">Create a free profile to save your progress and get personalized guidance.</p>
+              <Link to="/signup">
+                <Button size="lg" variant="secondary" className="gap-2 px-8">
+                  Get Started Free <ArrowRight className="w-5 h-5" />
+                </Button>
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Footer */}
       <footer className="py-10 bg-card border-t border-border">
