@@ -26,6 +26,11 @@ const careers = [
   { name: "CMA (Cost & Management Accountant)", stream: "Commerce", salary: "₹6-20 LPA", growth: "10%", id: "cma", desc: "Cost management, financial planning, and strategic decisions" },
   { name: "Nursing (B.Sc / GNM)", stream: "PCB", salary: "₹3-15 LPA", growth: "18%", id: "nursing", desc: "Patient care, hospital management, and community health" },
   { name: "Design (B.Des / NID)", stream: "Any", salary: "₹5-25 LPA", growth: "20%", id: "design", desc: "UX/UI, fashion, graphic, product, and interior design" },
+  { name: "Automobile Engineering", stream: "PCM", salary: "₹4-35 LPA", growth: "15%", id: "automobile", desc: "Design vehicles, EV systems, and automotive technology" },
+  { name: "Aerospace Engineering", stream: "PCM", salary: "₹5-45 LPA", growth: "18%", id: "aerospace", desc: "Build aircraft, rockets, satellites, and defence systems" },
+  { name: "Hotel Management & Hospitality", stream: "Any", salary: "₹3-30 LPA", growth: "14%", id: "hotel-management", desc: "Manage hotels, restaurants, events, and tourism" },
+  { name: "Aviation (Pilot / Cabin Crew)", stream: "PCM/Any", salary: "₹5-60 LPA", growth: "16%", id: "aviation", desc: "Fly aircraft, manage airports, and cabin crew services" },
+  { name: "Interior Design", stream: "Any", salary: "₹3-30 LPA", growth: "18%", id: "interior-design", desc: "Transform interior spaces with creative design solutions" },
 ];
 
 export default function Careers() {

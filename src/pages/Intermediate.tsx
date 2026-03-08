@@ -13,6 +13,10 @@ const engineeringBranches = [
     subBranches: ["VLSI Design", "Embedded Systems", "IoT", "Telecommunications"] },
   { name: "Mechanical Engineering", icon: Wrench, salary: "₹5-15 LPA", growth: "8%", skills: ["CAD/CAM", "Thermodynamics", "Manufacturing", "Robotics"], roles: ["Design Engineer", "Production Manager", "R&D Engineer", "Quality Engineer"], href: "/careers/mechanical",
     subBranches: ["Automobile", "Aerospace", "Robotics", "Manufacturing"] },
+  { name: "Automobile Engineering", icon: Wrench, salary: "₹4-35 LPA", growth: "15%", skills: ["CATIA", "Vehicle Dynamics", "EV Tech", "CAE"], roles: ["Automotive Engineer", "EV Engineer", "Design Engineer", "R&D Engineer"], href: "/careers/automobile",
+    subBranches: ["Electric Vehicles", "Vehicle Design", "Powertrain", "Motorsport"] },
+  { name: "Aerospace Engineering", icon: Cpu, salary: "₹5-45 LPA", growth: "18%", skills: ["Aerodynamics", "Propulsion", "CFD", "Avionics"], roles: ["Aerospace Engineer", "ISRO Scientist", "Flight Test Engineer", "Satellite Engineer"], href: "/careers/aerospace",
+    subBranches: ["Aircraft Design", "Space Systems", "Defence", "Drones/UAV"] },
   { name: "Civil Engineering", icon: Building2, salary: "₹5-12 LPA", growth: "6%", skills: ["Structural Analysis", "AutoCAD", "Project Management", "Surveying"], roles: ["Structural Engineer", "Site Engineer", "Urban Planner", "Project Manager"], href: "/careers/civil",
     subBranches: ["Structural", "Transportation", "Environmental", "Geotechnical"] },
   { name: "Electrical Engineering (EEE)", icon: Zap, salary: "₹5-15 LPA", growth: "10%", skills: ["Power Systems", "Control Systems", "Machines", "Renewable Energy"], roles: ["Power Engineer", "Electrical Designer", "Energy Consultant", "Automation Engineer"], href: "/careers/eee",
@@ -42,6 +46,9 @@ const artsPaths = [
   { name: "Journalism (BJMC)", path: "BJMC → Media industry / PG Diploma", career: "Journalist, Anchor, Editor, PR", salary: "₹4-15 LPA", href: "/careers/journalism" },
   { name: "Psychology (BA → MA → MPhil)", path: "BA Psychology → MA → RCI License", career: "Psychologist, Counselor, Therapist", salary: "₹4-15 LPA", href: "/careers/psychology" },
   { name: "Design (B.Des / NID)", path: "NID DAT / NIFT → B.Des", career: "UX Designer, Fashion Designer, Graphic Designer", salary: "₹5-20 LPA", href: "/careers/design" },
+  { name: "Hotel Management & Hospitality", path: "NCHMCT JEE → B.Sc HM / BHM", career: "Hotel Manager, Chef, Event Manager", salary: "₹3-30 LPA", href: "/careers/hotel-management" },
+  { name: "Aviation (Pilot / Cabin Crew)", path: "12th → CPL / Cabin Crew Training / AME", career: "Pilot, Cabin Crew, Airport Manager, ATC", salary: "₹5-60 LPA", href: "/careers/aviation" },
+  { name: "Interior Design", path: "B.Sc / Diploma Interior Design / CEPT / NID", career: "Interior Designer, Space Planner, Studio Owner", salary: "₹3-30 LPA", href: "/careers/interior-design" },
 ];
 
 export default function Intermediate() {
