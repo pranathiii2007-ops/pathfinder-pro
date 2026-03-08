@@ -9,6 +9,18 @@ type Msg = { role: "user" | "assistant"; content: string };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/career-chat`;
 
+// Parse [OPTION: ...] from assistant message
+function parseOptions(content: string): { text: string; options: string[] } {
+  const optionRegex = /\[OPTION:\s*(.+?)\]/g;
+  const options: string[] = [];
+  let match;
+  while ((match = optionRegex.exec(content)) !== null) {
+    options.push(match[1].trim());
+  }
+  const text = content.replace(/\[OPTION:\s*.+?\]/g, "").trim();
+  return { text, options };
+}
+
 async function streamChat({
   messages,
   onDelta,
@@ -70,7 +82,6 @@ async function streamChat({
     }
   }
 
-  // flush
   if (buf.trim()) {
     for (let raw of buf.split("\n")) {
       if (!raw) continue;
@@ -96,7 +107,6 @@ export default function CareerQuiz() {
   const [started, setStarted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -143,10 +153,18 @@ export default function CareerQuiz() {
     }
   };
 
+  const handleOptionClick = (option: string) => {
+    sendMessage(option);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     sendMessage(input);
   };
+
+  // Get options only from the LAST assistant message (and only when not loading)
+  const lastAssistantMsg = [...messages].reverse().find((m) => m.role === "assistant");
+  const lastOptions = !isLoading && lastAssistantMsg ? parseOptions(lastAssistantMsg.content).options : [];
 
   if (!started) {
     return (
@@ -167,7 +185,7 @@ export default function CareerQuiz() {
                 AI Career <span className="text-gradient-primary">Guide</span>
               </h1>
               <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto">
-                Have a quick conversation with our AI counselor. Answer a few questions about your interests and get personalized career recommendations.
+                Answer a few quick questions and get personalized career recommendations powered by AI.
               </p>
               <Button size="lg" onClick={startConversation} className="gradient-primary text-primary-foreground gap-2 px-8">
                 <Sparkles className="w-5 h-5" /> Start Career Discovery
@@ -202,41 +220,69 @@ export default function CareerQuiz() {
         {/* Messages */}
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
           <AnimatePresence>
-            {messages.map((msg, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25 }}
-                className={`flex gap-3 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-              >
-                {msg.role === "assistant" && (
-                  <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center shrink-0 mt-1">
-                    <Bot className="w-4 h-4 text-primary-foreground" />
-                  </div>
-                )}
-                <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-                    msg.role === "user"
-                      ? "bg-primary text-primary-foreground rounded-br-md"
-                      : "bg-muted text-foreground rounded-bl-md"
-                  }`}
+            {messages.map((msg, i) => {
+              const isAssistant = msg.role === "assistant";
+              const { text, options } = isAssistant ? parseOptions(msg.content) : { text: msg.content, options: [] };
+              const isLastAssistant = isAssistant && i === messages.length - 1;
+
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className={`flex gap-3 ${isAssistant ? "justify-start" : "justify-end"}`}
                 >
-                  {msg.role === "assistant" ? (
-                    <div className="prose prose-sm dark:prose-invert max-w-none [&>p]:mb-2 [&>ul]:mb-2 [&>ol]:mb-2">
-                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                  {isAssistant && (
+                    <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center shrink-0 mt-1">
+                      <Bot className="w-4 h-4 text-primary-foreground" />
                     </div>
-                  ) : (
-                    msg.content
                   )}
-                </div>
-                {msg.role === "user" && (
-                  <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center shrink-0 mt-1">
-                    <User className="w-4 h-4 text-secondary-foreground" />
+                  <div className="max-w-[80%] space-y-3">
+                    <div
+                      className={`rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+                        isAssistant
+                          ? "bg-muted text-foreground rounded-bl-md"
+                          : "bg-primary text-primary-foreground rounded-br-md"
+                      }`}
+                    >
+                      {isAssistant ? (
+                        <div className="prose prose-sm dark:prose-invert max-w-none [&>p]:mb-2 [&>ul]:mb-2 [&>ol]:mb-2 [&>p:last-child]:mb-0">
+                          <ReactMarkdown>{text}</ReactMarkdown>
+                        </div>
+                      ) : (
+                        msg.content
+                      )}
+                    </div>
+
+                    {/* Render clickable options only for the last assistant message when not loading */}
+                    {isLastAssistant && !isLoading && options.length > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.15 }}
+                        className="flex flex-wrap gap-2"
+                      >
+                        {options.map((opt, oi) => (
+                          <button
+                            key={oi}
+                            onClick={() => handleOptionClick(opt)}
+                            className="text-sm px-4 py-2.5 rounded-xl border-2 border-primary/20 bg-primary/5 text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 font-medium text-left"
+                          >
+                            {opt}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
                   </div>
-                )}
-              </motion.div>
-            ))}
+                  {!isAssistant && (
+                    <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center shrink-0 mt-1">
+                      <User className="w-4 h-4 text-secondary-foreground" />
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
 
           {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
@@ -261,14 +307,13 @@ export default function CareerQuiz() {
           )}
         </div>
 
-        {/* Input */}
+        {/* Input — still available for typing custom answers */}
         <form onSubmit={handleSubmit} className="px-4 py-3 border-t border-border">
           <div className="flex gap-2">
             <input
-              ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your answer..."
+              placeholder={lastOptions.length > 0 ? "Pick an option above or type your own..." : "Type your answer..."}
               disabled={isLoading}
               className="flex-1 h-11 rounded-xl border border-input bg-background px-4 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50"
             />
