@@ -19,6 +19,7 @@ import CareerDetail from "./pages/CareerDetail";
 import Internships from "./pages/Internships";
 
 import Courses from "./pages/Courses";
+import CareerQuiz from "./pages/CareerQuiz";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
