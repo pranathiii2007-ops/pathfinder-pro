@@ -93,6 +93,38 @@ export default function Internships() {
   const careerFilter = searchParams.get("career");
   const [searchQuery, setSearchQuery] = useState("");
   const [streamFilter, setStreamFilter] = useState("all");
+  const { user } = useAuth();
+  const { favorites } = useFavorites();
+  const { preferences } = usePreferences();
+
+  // Build recommended internships from favorites + stream preference
+  const recommendedInternships = useMemo(() => {
+    if (!user) return [];
+
+    const relevantTags = new Set<string>();
+
+    // Add tags from favorited careers
+    favorites.forEach(careerId => relevantTags.add(careerId));
+
+    // Add tags from selected stream
+    if (preferences?.selected_stream) {
+      const streamTags = streamToCareerTags[preferences.selected_stream];
+      if (streamTags) streamTags.forEach(t => relevantTags.add(t));
+    }
+
+    if (relevantTags.size === 0) return [];
+
+    // Score internships by how many relevant tags they match
+    const scored = liveInternships
+      .map(i => ({
+        internship: i,
+        score: i.tags.filter(t => relevantTags.has(t)).length,
+      }))
+      .filter(s => s.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+    return scored.slice(0, 6).map(s => s.internship);
+  }, [user, favorites, preferences]);
 
   const filteredInternships = liveInternships.filter(i => {
     if (careerFilter && !i.tags.includes(careerFilter)) return false;
