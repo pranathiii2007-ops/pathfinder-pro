@@ -103,7 +103,7 @@ async function streamChat({
 }
 
 export default function CareerQuiz() {
-  const { user, loading } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
@@ -114,10 +114,10 @@ export default function CareerQuiz() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!authLoading && !user) {
       navigate("/login", { replace: true });
     }
-  }, [user, loading, navigate]);
+  }, [user, authLoading, navigate]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
