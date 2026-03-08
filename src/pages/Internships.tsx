@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
-import { Briefcase, Clock, MapPin, ExternalLink, Rocket, GraduationCap, FileText, CheckCircle2, Target, X } from "lucide-react";
+import { Briefcase, Clock, MapPin, ExternalLink, Rocket, GraduationCap, FileText, CheckCircle2, Target, X, Search, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { liveInternships } from "@/data/internships";
 
 const roadmapSteps = [
