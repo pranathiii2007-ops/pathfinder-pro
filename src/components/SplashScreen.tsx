@@ -54,7 +54,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
             transition={{ duration: 0.5 }}
             className="text-4xl md:text-6xl font-bold mb-3"
           >
-            Future Steps
+            PathFinder
           </motion.h1>
 
           <motion.p

@@ -29,7 +29,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 hover-scale shrink-0">
             <Footprints className="w-7 h-7 text-primary" />
-            <span className="font-bold text-xl text-gradient-primary">Future Steps</span>
+            <span className="font-bold text-xl text-gradient-primary">PathFinder</span>
           </Link>
 
           <div className="flex items-center gap-4 ml-6">
