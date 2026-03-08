@@ -35,6 +35,26 @@ const liveInternships = [
   { title: "Data Science Intern", company: "Salesforce", location: "Hyderabad", duration: "3 months", stipend: "₹50,000/month", applyUrl: "https://careers.salesforce.com/en/jobs/?search=intern&country=India" },
   { title: "SDE Intern", company: "Samsung R&D", location: "Bangalore", duration: "6 months", stipend: "₹40,000/month", applyUrl: "https://www.samsung.com/in/about-us/careers/" },
 
+  // Global Giants
+  { title: "SWE Intern", company: "Netflix", location: "Remote", duration: "3 months", stipend: "₹75,000/month", applyUrl: "https://jobs.netflix.com/search?q=intern" },
+  { title: "AI/ML Intern", company: "NVIDIA", location: "Bangalore/Pune", duration: "6 months", stipend: "₹60,000/month", applyUrl: "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite?q=intern" },
+  { title: "Platform Intern", company: "Uber", location: "Bangalore", duration: "3 months", stipend: "₹55,000/month", applyUrl: "https://www.uber.com/us/en/careers/list/?query=intern&location=IND" },
+  { title: "Software Intern", company: "Tesla", location: "Remote", duration: "3 months", stipend: "₹65,000/month", applyUrl: "https://www.tesla.com/careers/search/?query=intern" },
+  { title: "Cloud Intern", company: "Spotify", location: "Remote", duration: "3 months", stipend: "₹50,000/month", applyUrl: "https://www.lifeatspotify.com/jobs?query=intern" },
+  { title: "SWE Intern", company: "Twitter/X", location: "Bangalore", duration: "3 months", stipend: "₹55,000/month", applyUrl: "https://careers.twitter.com/" },
+  { title: "Data Intern", company: "Airbnb", location: "Remote", duration: "3 months", stipend: "₹60,000/month", applyUrl: "https://careers.airbnb.com/" },
+  { title: "Engineering Intern", company: "Stripe", location: "Remote", duration: "3 months", stipend: "₹70,000/month", applyUrl: "https://stripe.com/jobs/search?query=intern" },
+  { title: "Product Intern", company: "Atlassian", location: "Bangalore", duration: "3 months", stipend: "₹55,000/month", applyUrl: "https://www.atlassian.com/company/careers/all-jobs?search=intern" },
+  { title: "SDE Intern", company: "PayPal", location: "Bangalore/Chennai", duration: "6 months", stipend: "₹45,000/month", applyUrl: "https://careers.pypl.com/search-jobs?k=intern&l=India" },
+  { title: "Software Intern", company: "Cisco", location: "Bangalore", duration: "6 months", stipend: "₹40,000/month", applyUrl: "https://jobs.cisco.com/jobs/SearchJobs/intern" },
+  { title: "DevOps Intern", company: "VMware", location: "Bangalore", duration: "6 months", stipend: "₹35,000/month", applyUrl: "https://careers.vmware.com/main/jobs?keywords=intern" },
+  { title: "SWE Intern", company: "Qualcomm", location: "Hyderabad", duration: "6 months", stipend: "₹45,000/month", applyUrl: "https://www.qualcomm.com/company/careers" },
+  { title: "Embedded Systems Intern", company: "Intel", location: "Bangalore", duration: "6 months", stipend: "₹40,000/month", applyUrl: "https://jobs.intel.com/en/search-jobs?k=intern" },
+  { title: "Backend Intern", company: "Shopify", location: "Remote", duration: "3 months", stipend: "₹50,000/month", applyUrl: "https://www.shopify.com/careers/search?q=intern" },
+  { title: "Platform Intern", company: "LinkedIn", location: "Bangalore", duration: "3 months", stipend: "₹55,000/month", applyUrl: "https://careers.linkedin.com/students" },
+  { title: "Research Intern", company: "DeepMind", location: "Remote", duration: "3 months", stipend: "₹80,000/month", applyUrl: "https://deepmind.google/about/careers/" },
+  { title: "AI Intern", company: "OpenAI", location: "Remote", duration: "3 months", stipend: "₹90,000/month", applyUrl: "https://openai.com/careers/" },
+
   // Indian Startups & Companies
   { title: "Web Developer Intern", company: "Flipkart", location: "Bangalore", duration: "3 months", stipend: "₹40,000/month", applyUrl: "https://www.linkedin.com/company/flipkart/jobs/" },
   { title: "Product Design Intern", company: "Swiggy", location: "Remote", duration: "3 months", stipend: "₹30,000/month", applyUrl: "https://www.linkedin.com/company/swiggy/jobs/" },
