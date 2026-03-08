@@ -1364,9 +1364,46 @@ export default function CareerDetail() {
             <p className="text-muted-foreground leading-relaxed">{career.futureOutlook}</p>
           </motion.div>
 
+          {/* Related Internships */}
+          {(() => {
+            const relatedInternships = getInternshipsByCareer(careerId!);
+            if (relatedInternships.length === 0) return null;
+            const displayedInternships = relatedInternships.slice(0, 4);
+            return (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="bg-card rounded-xl p-6 border border-border mb-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="font-bold text-xl flex items-center gap-2"><Briefcase className="w-5 h-5 text-accent" />Related Internships</h2>
+                  <Link to={`/internships?career=${careerId}`}>
+                    <Button variant="outline" size="sm" className="gap-1">
+                      View All <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </Link>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {displayedInternships.map((item) => (
+                    <div key={item.title + item.company} className="bg-muted/50 rounded-lg p-4 border border-border">
+                      <h3 className="font-bold text-sm mb-1">{item.title}</h3>
+                      <p className="text-primary font-medium text-xs mb-2">{item.company}</p>
+                      <div className="flex flex-wrap gap-2 text-xs text-muted-foreground mb-3">
+                        <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{item.location}</span>
+                        <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{item.duration}</span>
+                        <span className="flex items-center gap-1"><Briefcase className="w-3 h-3" />{item.stipend}</span>
+                      </div>
+                      <a href={item.applyUrl} target="_blank" rel="noopener noreferrer">
+                        <Button size="sm" variant="outline" className="gap-1 text-xs h-7">
+                          Apply <ExternalLink className="w-3 h-3" />
+                        </Button>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })()}
+
           {/* Related Careers */}
           {career.relatedCareers.length > 0 && (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="bg-card rounded-xl p-6 border border-border">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75 }} className="bg-card rounded-xl p-6 border border-border">
               <h2 className="font-bold text-xl mb-4 flex items-center gap-2"><Users className="w-5 h-5 text-secondary" />Related Careers</h2>
               <div className="flex flex-wrap gap-3">
                 {career.relatedCareers.map((rc) => (
