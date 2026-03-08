@@ -29,11 +29,11 @@ const medicalPaths = [
 ];
 
 const commercePaths = [
-  { name: "CA (Chartered Accountancy)", stages: "Foundation → Inter → Final → Articleship", salary: "₹8-30 LPA", duration: "4-5 years" },
-  { name: "MBA (Post B.Com/BBA)", stages: "B.Com/BBA → CAT/MAT → MBA", salary: "₹10-35 LPA", duration: "2 years (after graduation)" },
-  { name: "CS (Company Secretary)", stages: "Foundation → Executive → Professional", salary: "₹6-20 LPA", duration: "3-4 years" },
-  { name: "CMA (Cost & Management Accountant)", stages: "Foundation → Intermediate → Final", salary: "₹6-18 LPA", duration: "3-4 years" },
-  { name: "CFA / FRM (Finance)", stages: "B.Com → CFA Level 1/2/3", salary: "₹12-50 LPA", duration: "2-3 years" },
+  { name: "CA (Chartered Accountancy)", stages: "Foundation → Inter → Final → Articleship", salary: "₹8-30 LPA", duration: "4-5 years", href: "/careers/ca" },
+  { name: "MBA (Post B.Com/BBA)", stages: "B.Com/BBA → CAT/MAT → MBA", salary: "₹10-35 LPA", duration: "2 years (after graduation)", href: "/careers/mba" },
+  { name: "CS (Company Secretary)", stages: "Foundation → Executive → Professional", salary: "₹6-20 LPA", duration: "3-4 years", href: "/careers/cs" },
+  { name: "CMA (Cost & Management Accountant)", stages: "Foundation → Intermediate → Final", salary: "₹6-18 LPA", duration: "3-4 years", href: "/careers/cma" },
+  { name: "CFA / FRM (Finance)", stages: "B.Com → CFA Level 1/2/3", salary: "₹12-50 LPA", duration: "2-3 years", href: "/careers/finance" },
 ];
 
 const artsPaths = [
