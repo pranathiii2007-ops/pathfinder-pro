@@ -41,18 +41,6 @@ export default function Landing() {
               Guided career discovery for students — from choosing your stream after 10th to landing your dream career.
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <Link to="/streams">
-                <Button size="lg" className="gradient-primary text-primary-foreground gap-2 px-8">
-                  Start Your Journey <ArrowRight className="w-5 h-5" />
-                </Button>
-              </Link>
-            </motion.div>
           </div>
         </div>
       </section>
