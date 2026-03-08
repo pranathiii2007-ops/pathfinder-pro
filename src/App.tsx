@@ -17,6 +17,7 @@ import Careers from "./pages/Careers";
 import CareerDetail from "./pages/CareerDetail";
 
 import Internships from "./pages/Internships";
+import Recommendations from "./pages/Recommendations";
 import Courses from "./pages/Courses";
 import NotFound from "./pages/NotFound";
 
