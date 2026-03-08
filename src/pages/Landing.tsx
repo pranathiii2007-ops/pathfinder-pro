@@ -1,13 +1,9 @@
-import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Footprints, GraduationCap, BookOpen, Sparkles, Briefcase, MapPin, Clock, ExternalLink } from "lucide-react";
+import { ArrowRight, Footprints, GraduationCap, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { useAuth } from "@/hooks/useAuth";
-import { useFavorites } from "@/hooks/useFavorites";
-import { usePreferences } from "@/hooks/usePreferences";
-import { liveInternships } from "@/data/internships";
 
 const stages = [
   { title: "After 10th", desc: "Choose your stream — Science, Commerce, Arts, or Diploma", icon: GraduationCap, href: "/streams", color: "gradient-primary" },
