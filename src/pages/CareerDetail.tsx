@@ -1376,6 +1376,99 @@ export default function CareerDetail() {
               </div>
             </motion.div>
           )}
+
+          {/* Related Internships */}
+          {(() => {
+            const careerInternshipMap: Record<string, Array<{ title: string; company: string; location: string; stipend: string; applyUrl: string }>> = {
+              "cse": [
+                { title: "Software Development Intern", company: "Google", location: "Bangalore", stipend: "₹80,000/month", applyUrl: "https://www.google.com/about/careers/applications/jobs/results/?q=intern&location=India" },
+                { title: "ML Research Intern", company: "Microsoft", location: "Bangalore", stipend: "₹60,000/month", applyUrl: "https://careers.microsoft.com/students/us/en/search-results?keywords=intern&location=India" },
+                { title: "Full Stack Intern", company: "Adobe", location: "Noida", stipend: "₹55,000/month", applyUrl: "https://careers.adobe.com/us/en/search-results?keywords=intern%20india" },
+                { title: "SWE Intern", company: "Meta", location: "Remote", stipend: "₹70,000/month", applyUrl: "https://www.metacareers.com/jobs?q=intern&location=India" },
+              ],
+              "medicine": [
+                { title: "Clinical Research Intern", company: "Apollo Hospitals", location: "Chennai", stipend: "₹15,000/month", applyUrl: "https://www.apollohospitals.com/careers/" },
+                { title: "Healthcare Analytics Intern", company: "Fortis", location: "Delhi", stipend: "₹12,000/month", applyUrl: "https://www.fortishealthcare.com/careers" },
+              ],
+              "ca": [
+                { title: "Audit Intern", company: "Deloitte", location: "Mumbai", stipend: "₹30,000/month", applyUrl: "https://www2.deloitte.com/in/en/careers/students.html" },
+                { title: "Tax Advisory Intern", company: "EY", location: "Bangalore", stipend: "₹25,000/month", applyUrl: "https://www.ey.com/en_in/careers/students" },
+                { title: "Consulting Intern", company: "KPMG", location: "Mumbai", stipend: "₹25,000/month", applyUrl: "https://www.kpmg.com/in/en/home/careers.html" },
+              ],
+              "data-science": [
+                { title: "Data Analyst Intern", company: "Amazon", location: "Hyderabad", stipend: "₹50,000/month", applyUrl: "https://www.amazon.jobs/en/search?base_query=intern&loc_query=India&country=IND" },
+                { title: "Data Science Intern", company: "Salesforce", location: "Hyderabad", stipend: "₹50,000/month", applyUrl: "https://careers.salesforce.com/en/jobs/?search=intern&country=India" },
+                { title: "AI/ML Intern", company: "NVIDIA", location: "Bangalore/Pune", stipend: "₹60,000/month", applyUrl: "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite?q=intern" },
+                { title: "AI Intern", company: "OpenAI", location: "Remote", stipend: "₹90,000/month", applyUrl: "https://openai.com/careers/" },
+              ],
+              "law": [
+                { title: "Legal Intern", company: "AZB & Partners", location: "Mumbai", stipend: "₹15,000/month", applyUrl: "https://www.azbpartners.com/careers" },
+                { title: "Corporate Law Intern", company: "Cyril Amarchand", location: "Mumbai", stipend: "₹15,000/month", applyUrl: "https://cyrilshroff.com/careers/" },
+              ],
+              "finance": [
+                { title: "Investment Banking Intern", company: "Goldman Sachs", location: "Bangalore", stipend: "₹60,000/month", applyUrl: "https://www.goldmansachs.com/careers/students/" },
+                { title: "Finance Intern", company: "JPMorgan", location: "Mumbai", stipend: "₹50,000/month", applyUrl: "https://careers.jpmorgan.com/in/en/students/programs" },
+              ],
+              "mechanical": [
+                { title: "Mechanical Intern", company: "Tata Motors", location: "Pune", stipend: "₹20,000/month", applyUrl: "https://www.tatamotors.com/careers/" },
+                { title: "Software Intern", company: "Tesla", location: "Remote", stipend: "₹65,000/month", applyUrl: "https://www.tesla.com/careers/search/?query=intern" },
+              ],
+              "ece": [
+                { title: "Embedded Systems Intern", company: "Intel", location: "Bangalore", stipend: "₹40,000/month", applyUrl: "https://jobs.intel.com/en/search-jobs?k=intern" },
+                { title: "SWE Intern", company: "Qualcomm", location: "Hyderabad", stipend: "₹45,000/month", applyUrl: "https://www.qualcomm.com/company/careers" },
+                { title: "Hardware Engineering Intern", company: "Apple", location: "Hyderabad", stipend: "₹65,000/month", applyUrl: "https://jobs.apple.com/en-in/search?search=intern" },
+              ],
+              "biotech": [
+                { title: "AI Research Intern", company: "IIT Madras", location: "Chennai", stipend: "₹15,000/month", applyUrl: "https://internshala.com/internships/internship-in-chennai" },
+                { title: "DRDO Project Trainee", company: "DRDO", location: "Delhi", stipend: "₹20,000/month", applyUrl: "https://rac.gov.in/" },
+              ],
+              "pharmacy": [
+                { title: "Pharma Research Intern", company: "Biocon", location: "Bangalore", stipend: "₹15,000/month", applyUrl: "https://www.biocon.com/careers/" },
+              ],
+              "mba": [
+                { title: "Consulting Intern", company: "McKinsey", location: "Delhi", stipend: "₹80,000/month", applyUrl: "https://www.mckinsey.com/careers/search-jobs?query=intern" },
+                { title: "Consulting Intern", company: "Accenture", location: "Mumbai", stipend: "₹25,000/month", applyUrl: "https://www.accenture.com/in-en/careers/local/students-graduates" },
+                { title: "Marketing Intern", company: "Zomato", location: "Gurugram", stipend: "₹25,000/month", applyUrl: "https://www.linkedin.com/company/zomato/jobs/" },
+              ],
+              "design": [
+                { title: "Product Design Intern", company: "Swiggy", location: "Remote", stipend: "₹30,000/month", applyUrl: "https://www.linkedin.com/company/swiggy/jobs/" },
+                { title: "Design Intern", company: "Figma", location: "Remote", stipend: "₹50,000/month", applyUrl: "https://www.figma.com/careers/" },
+              ],
+              "aerospace": [
+                { title: "ISRO Research Intern", company: "ISRO", location: "Various", stipend: "₹15,000/month", applyUrl: "https://www.isro.gov.in/Careers.html" },
+                { title: "DRDO Project Trainee", company: "DRDO", location: "Delhi", stipend: "₹20,000/month", applyUrl: "https://rac.gov.in/" },
+              ],
+              "automobile": [
+                { title: "Software Intern", company: "Tesla", location: "Remote", stipend: "₹65,000/month", applyUrl: "https://www.tesla.com/careers/search/?query=intern" },
+                { title: "Mechanical Intern", company: "Tata Motors", location: "Pune", stipend: "₹20,000/month", applyUrl: "https://www.tatamotors.com/careers/" },
+              ],
+            };
+            const internships = careerInternshipMap[careerId || ""] || [];
+            if (internships.length === 0) return null;
+            return (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75 }} className="bg-card rounded-xl p-6 border border-border mt-6">
+                <h2 className="font-bold text-xl mb-4 flex items-center gap-2"><Briefcase className="w-5 h-5 text-primary" />Related Internships</h2>
+                <div className="grid sm:grid-cols-2 gap-3 mb-4">
+                  {internships.map((intern) => (
+                    <a key={intern.company + intern.title} href={intern.applyUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-primary/5 transition-colors">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-sm">{intern.title}</p>
+                        <p className="text-muted-foreground text-xs">{intern.company}</p>
+                        <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
+                          <span className="flex items-center gap-0.5"><MapPin className="w-3 h-3" />{intern.location}</span>
+                          <span className="text-success font-medium">{intern.stipend}</span>
+                        </div>
+                      </div>
+                      <ExternalLink className="w-4 h-4 text-muted-foreground shrink-0 mt-1" />
+                    </a>
+                  ))}
+                </div>
+                <Link to="/internships">
+                  <Button variant="outline" size="sm" className="gap-1">View All Internships <ExternalLink className="w-3.5 h-3.5" /></Button>
+                </Link>
+              </motion.div>
+            );
+          })()}
         </div>
       </main>
     </div>
