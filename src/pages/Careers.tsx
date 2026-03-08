@@ -19,6 +19,13 @@ const careers = [
   { name: "Biotechnology", stream: "PCB", salary: "₹5-18 LPA", growth: "18%", id: "biotech", desc: "Genetic engineering, bio-pharma, and research" },
   { name: "Psychology & Counseling", stream: "Arts", salary: "₹4-15 LPA", growth: "20%", id: "psychology", desc: "Help people with mental health and wellbeing" },
   { name: "Journalism & Media", stream: "Arts", salary: "₹4-15 LPA", growth: "12%", id: "journalism", desc: "Report news, create content, and shape opinion" },
+  { name: "Pharmacy (B.Pharm / D.Pharm)", stream: "PCB", salary: "₹4-20 LPA", growth: "14%", id: "pharmacy", desc: "Develop drugs, manage pharmacies, and clinical research" },
+  { name: "Architecture (B.Arch)", stream: "PCM", salary: "₹5-25 LPA", growth: "10%", id: "architecture", desc: "Design buildings, spaces, and sustainable structures" },
+  { name: "MBA / Management", stream: "Any", salary: "₹10-40 LPA", growth: "15%", id: "mba", desc: "Lead businesses, strategy, marketing, and operations" },
+  { name: "Company Secretary (CS)", stream: "Commerce", salary: "₹6-25 LPA", growth: "10%", id: "cs", desc: "Corporate governance, compliance, and legal advisory" },
+  { name: "CMA (Cost & Management Accountant)", stream: "Commerce", salary: "₹6-20 LPA", growth: "10%", id: "cma", desc: "Cost management, financial planning, and strategic decisions" },
+  { name: "Nursing (B.Sc / GNM)", stream: "PCB", salary: "₹3-15 LPA", growth: "18%", id: "nursing", desc: "Patient care, hospital management, and community health" },
+  { name: "Design (B.Des / NID)", stream: "Any", salary: "₹5-25 LPA", growth: "20%", id: "design", desc: "UX/UI, fashion, graphic, product, and interior design" },
 ];
 
 export default function Careers() {
