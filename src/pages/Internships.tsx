@@ -74,6 +74,20 @@ const streamFilters: { label: string; careers: string[] }[] = [
   { label: "Architecture", careers: ["architecture"] },
 ];
 
+// Map user stream preferences to career tags
+const streamToCareerTags: Record<string, string[]> = {
+  "MPC": ["cse", "data-science", "ai-ml", "mechanical", "ece", "civil", "automobile", "aerospace", "architecture"],
+  "PCM": ["cse", "data-science", "ai-ml", "mechanical", "ece", "civil", "automobile", "aerospace", "architecture"],
+  "BiPC": ["medicine", "pharmacy", "biotech", "nursing", "psychology"],
+  "PCB": ["medicine", "pharmacy", "biotech", "nursing", "psychology"],
+  "CEC": ["ca", "cs", "cma", "finance", "law"],
+  "Commerce": ["ca", "cs", "cma", "finance", "mba"],
+  "MEC": ["ca", "cs", "cma", "finance", "mba"],
+  "HEC": ["mba", "hotel-management", "journalism"],
+  "Arts": ["law", "journalism", "psychology", "design"],
+  "Vocational": ["design", "interior-design", "hotel-management"],
+};
+
 export default function Internships() {
   const [searchParams, setSearchParams] = useSearchParams();
   const careerFilter = searchParams.get("career");
