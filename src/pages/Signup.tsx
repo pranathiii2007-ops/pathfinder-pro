@@ -50,7 +50,7 @@ export default function Signup() {
           transition={{ duration: 0.5 }}
           className="text-center text-secondary-foreground max-w-md"
         >
-          <GraduationCap className="w-24 h-24 mx-auto mb-6 animate-float" />
+          <Footprints className="w-24 h-24 mx-auto mb-6 animate-float" />
           <h2 className="text-3xl font-bold mb-4">
             Start Your Journey
           </h2>
