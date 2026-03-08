@@ -46,6 +46,9 @@ const artsPaths = [
   { name: "Journalism (BJMC)", path: "BJMC → Media industry / PG Diploma", career: "Journalist, Anchor, Editor, PR", salary: "₹4-15 LPA", href: "/careers/journalism" },
   { name: "Psychology (BA → MA → MPhil)", path: "BA Psychology → MA → RCI License", career: "Psychologist, Counselor, Therapist", salary: "₹4-15 LPA", href: "/careers/psychology" },
   { name: "Design (B.Des / NID)", path: "NID DAT / NIFT → B.Des", career: "UX Designer, Fashion Designer, Graphic Designer", salary: "₹5-20 LPA", href: "/careers/design" },
+  { name: "Hotel Management & Hospitality", path: "NCHMCT JEE → B.Sc HM / BHM", career: "Hotel Manager, Chef, Event Manager", salary: "₹3-30 LPA", href: "/careers/hotel-management" },
+  { name: "Aviation (Pilot / Cabin Crew)", path: "12th → CPL / Cabin Crew Training / AME", career: "Pilot, Cabin Crew, Airport Manager, ATC", salary: "₹5-60 LPA", href: "/careers/aviation" },
+  { name: "Interior Design", path: "B.Sc / Diploma Interior Design / CEPT / NID", career: "Interior Designer, Space Planner, Studio Owner", salary: "₹3-30 LPA", href: "/careers/interior-design" },
 ];
 
 export default function Intermediate() {
