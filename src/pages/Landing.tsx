@@ -54,11 +54,6 @@ export default function Landing() {
                   Start Your Journey <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
-              <Link to="/careers">
-                <Button size="lg" variant="outline" className="gap-2 px-8">
-                  Explore Careers
-                </Button>
-              </Link>
             </motion.div>
           </div>
         </div>
