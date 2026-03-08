@@ -7,8 +7,6 @@ import { Navbar } from "@/components/Navbar";
 const stages = [
   { title: "After 10th", desc: "Choose your stream — Science, Commerce, Arts, or Diploma", icon: GraduationCap, href: "/streams", color: "gradient-primary" },
   { title: "After Intermediate", desc: "Branches, specializations & entrance exams", icon: BookOpen, href: "/intermediate", color: "gradient-secondary" },
-  { title: "Career Paths", desc: "Detailed career options with salary & growth data", icon: Briefcase, href: "/careers", color: "gradient-accent" },
-  { title: "Find Colleges", desc: "Top colleges across India filtered by course & location", icon: MapPin, href: "/colleges", color: "gradient-primary" },
 ];
 
 export default function Landing() {
