@@ -93,9 +93,9 @@ export default function Landing() {
               viewport={{ once: true }}
               className="max-w-2xl mx-auto text-center text-primary-foreground"
             >
-              <h2 className="text-3xl font-bold mb-4">About Future Steps</h2>
+              <h2 className="text-3xl font-bold mb-4">About PathFinder</h2>
               <p className="text-lg opacity-90">
-                Future Steps is a guided career discovery platform built for Indian students. We help you navigate every milestone — from choosing your stream after 10th, to picking the right branch after Intermediate, to landing internships and building your dream career. Your journey, simplified.
+                PathFinder is a guided career discovery platform built for Indian students. We help you navigate every milestone — from choosing your stream after 10th, to picking the right branch after Intermediate, to landing internships and building your dream career. Your journey, simplified.
               </p>
             </motion.div>
           </div>
