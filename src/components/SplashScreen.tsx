@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Rocket, Sparkles } from "lucide-react";
+import { Rocket, Sparkles, Footprints } from "lucide-react";
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -11,12 +11,11 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase(1), 500),
-      setTimeout(() => setPhase(2), 1200),
-      setTimeout(() => setPhase(3), 2000),
-      setTimeout(() => onComplete(), 3000),
+      setTimeout(() => setPhase(1), 600),
+      setTimeout(() => setPhase(2), 1500),
+      setTimeout(() => setPhase(3), 2400),
+      setTimeout(() => onComplete(), 3500),
     ];
-
     return () => timers.forEach(clearTimeout);
   }, [onComplete]);
 
@@ -36,7 +35,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
             className="mb-6 flex justify-center"
           >
             <div className="relative">
-              <GraduationCap className="w-24 h-24" />
+              <Footprints className="w-20 h-20" />
               {phase >= 1 && (
                 <motion.div
                   initial={{ scale: 0 }}
@@ -53,18 +52,18 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: phase >= 1 ? 1 : 0, y: phase >= 1 ? 0 : 20 }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-4xl md:text-6xl font-bold mb-3"
           >
-            CareerPath India
+            Future Steps
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: phase >= 2 ? 1 : 0, y: phase >= 2 ? 0 : 20 }}
             transition={{ duration: 0.5 }}
-            className="text-xl md:text-2xl opacity-90 mb-8"
+            className="text-xl md:text-2xl opacity-90 mb-8 italic"
           >
-            Your Journey to Success Starts Here
+            Every future begins with the right step
           </motion.p>
 
           {phase >= 3 && (
@@ -75,7 +74,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
               className="flex items-center justify-center gap-2"
             >
               <Rocket className="w-6 h-6 animate-bounce-subtle" />
-              <span className="text-lg">Let's Begin!</span>
+              <span className="text-lg font-medium">Let's Begin!</span>
             </motion.div>
           )}
         </div>
@@ -87,12 +86,12 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
               key={i}
               className="absolute w-2 h-2 bg-primary-foreground/20 rounded-full"
               initial={{
-                x: Math.random() * window.innerWidth,
-                y: window.innerHeight + 10,
+                x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1000),
+                y: (typeof window !== "undefined" ? window.innerHeight : 800) + 10,
               }}
               animate={{
                 y: -10,
-                x: Math.random() * window.innerWidth,
+                x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1000),
               }}
               transition={{
                 duration: 3 + Math.random() * 2,
