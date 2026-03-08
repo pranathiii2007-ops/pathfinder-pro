@@ -57,17 +57,36 @@ const careerLabels: Record<string, string> = {
   "cyber-security": "Cyber Security",
 };
 
+// Extract unique locations and durations for filters
+const allLocations = [...new Set(liveInternships.map(i => i.location))].sort();
+const allDurations = [...new Set(liveInternships.map(i => i.duration))].sort();
+
 export default function Internships() {
   const [searchParams, setSearchParams] = useSearchParams();
   const careerFilter = searchParams.get("career");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [locationFilter, setLocationFilter] = useState("all");
+  const [durationFilter, setDurationFilter] = useState("all");
 
-  const filteredInternships = careerFilter
-    ? liveInternships.filter(i => i.tags.includes(careerFilter))
-    : liveInternships;
+  const filteredInternships = liveInternships.filter(i => {
+    if (careerFilter && !i.tags.includes(careerFilter)) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      if (!i.title.toLowerCase().includes(q) && !i.company.toLowerCase().includes(q)) return false;
+    }
+    if (locationFilter !== "all" && i.location !== locationFilter) return false;
+    if (durationFilter !== "all" && i.duration !== durationFilter) return false;
+    return true;
+  });
 
-  const clearFilter = () => {
+  const clearAllFilters = () => {
     setSearchParams({});
+    setSearchQuery("");
+    setLocationFilter("all");
+    setDurationFilter("all");
   };
+
+  const hasActiveFilters = !!careerFilter || !!searchQuery || locationFilter !== "all" || durationFilter !== "all";
 
   return (
     <div className="min-h-screen bg-background">
