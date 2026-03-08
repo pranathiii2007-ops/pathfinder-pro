@@ -23,16 +23,57 @@ const platforms = [
 ];
 
 const liveInternships = [
+  // Big Tech
   { title: "Software Development Intern", company: "Google", location: "Bangalore", duration: "3 months", stipend: "₹80,000/month", applyUrl: "https://www.google.com/about/careers/applications/jobs/results/?q=intern&location=India" },
-  { title: "Data Analyst Intern", company: "Amazon", location: "Hyderabad", duration: "6 months", stipend: "₹50,000/month", applyUrl: "https://www.amazon.jobs/en/search?base_query=intern&loc_query=India&country=IND" },
   { title: "ML Research Intern", company: "Microsoft", location: "Bangalore", duration: "3 months", stipend: "₹60,000/month", applyUrl: "https://careers.microsoft.com/students/us/en/search-results?keywords=intern&location=India" },
+  { title: "Data Analyst Intern", company: "Amazon", location: "Hyderabad", duration: "6 months", stipend: "₹50,000/month", applyUrl: "https://www.amazon.jobs/en/search?base_query=intern&loc_query=India&country=IND" },
+  { title: "SWE Intern", company: "Meta", location: "Remote", duration: "3 months", stipend: "₹70,000/month", applyUrl: "https://www.metacareers.com/jobs?q=intern&location=India" },
+  { title: "Hardware Engineering Intern", company: "Apple", location: "Hyderabad", duration: "6 months", stipend: "₹65,000/month", applyUrl: "https://jobs.apple.com/en-in/search?search=intern" },
+  { title: "Cloud Solutions Intern", company: "Oracle", location: "Bangalore", duration: "6 months", stipend: "₹40,000/month", applyUrl: "https://www.oracle.com/in/careers/students-grads/" },
+  { title: "Security Engineering Intern", company: "IBM", location: "Bangalore", duration: "6 months", stipend: "₹35,000/month", applyUrl: "https://www.ibm.com/careers/search?field_keyword_18[0]=Intern&primary_country=IN" },
+  { title: "Full Stack Intern", company: "Adobe", location: "Noida", duration: "6 months", stipend: "₹55,000/month", applyUrl: "https://careers.adobe.com/us/en/search-results?keywords=intern%20india" },
+  { title: "Data Science Intern", company: "Salesforce", location: "Hyderabad", duration: "3 months", stipend: "₹50,000/month", applyUrl: "https://careers.salesforce.com/en/jobs/?search=intern&country=India" },
+  { title: "SDE Intern", company: "Samsung R&D", location: "Bangalore", duration: "6 months", stipend: "₹40,000/month", applyUrl: "https://www.samsung.com/in/about-us/careers/" },
+
+  // Indian Startups & Companies
   { title: "Web Developer Intern", company: "Flipkart", location: "Bangalore", duration: "3 months", stipend: "₹40,000/month", applyUrl: "https://www.linkedin.com/company/flipkart/jobs/" },
-  { title: "DRDO Project Trainee", company: "DRDO", location: "Delhi", duration: "6 months", stipend: "₹20,000/month", applyUrl: "https://rac.gov.in/" },
   { title: "Product Design Intern", company: "Swiggy", location: "Remote", duration: "3 months", stipend: "₹30,000/month", applyUrl: "https://www.linkedin.com/company/swiggy/jobs/" },
   { title: "Backend Engineer Intern", company: "Razorpay", location: "Bangalore", duration: "6 months", stipend: "₹45,000/month", applyUrl: "https://www.linkedin.com/company/razorpay/jobs/" },
   { title: "Marketing Intern", company: "Zomato", location: "Gurugram", duration: "2 months", stipend: "₹25,000/month", applyUrl: "https://www.linkedin.com/company/zomato/jobs/" },
+  { title: "Frontend Intern", company: "PhonePe", location: "Bangalore", duration: "6 months", stipend: "₹35,000/month", applyUrl: "https://www.phonepe.com/careers/" },
+  { title: "Data Engineering Intern", company: "Paytm", location: "Noida", duration: "3 months", stipend: "₹25,000/month", applyUrl: "https://paytm.com/careers" },
+  { title: "DevOps Intern", company: "Zerodha", location: "Bangalore", duration: "6 months", stipend: "₹30,000/month", applyUrl: "https://zerodha.com/careers" },
+  { title: "Mobile Dev Intern", company: "CRED", location: "Bangalore", duration: "3 months", stipend: "₹40,000/month", applyUrl: "https://careers.cred.club/" },
+  { title: "QA Intern", company: "Meesho", location: "Bangalore", duration: "3 months", stipend: "₹25,000/month", applyUrl: "https://www.meesho.io/careers" },
+  { title: "ML Engineer Intern", company: "Ola", location: "Bangalore", duration: "6 months", stipend: "₹35,000/month", applyUrl: "https://www.olacabs.com/careers" },
+
+  // IT Services
   { title: "Cloud Engineering Intern", company: "TCS", location: "Mumbai", duration: "6 months", stipend: "₹15,000/month", applyUrl: "https://www.tcs.com/careers/tcs-nextstep-portal" },
+  { title: "SAP Intern", company: "Infosys", location: "Mysore", duration: "6 months", stipend: "₹15,000/month", applyUrl: "https://www.infosys.com/careers/internship.html" },
+  { title: "Automation Intern", company: "Wipro", location: "Bangalore", duration: "6 months", stipend: "₹15,000/month", applyUrl: "https://careers.wipro.com/opportunities/students" },
+  { title: "Consulting Intern", company: "Accenture", location: "Mumbai", duration: "3 months", stipend: "₹25,000/month", applyUrl: "https://www.accenture.com/in-en/careers/local/students-graduates" },
+  { title: "Cybersecurity Intern", company: "HCLTech", location: "Noida", duration: "6 months", stipend: "₹18,000/month", applyUrl: "https://www.hcltech.com/careers" },
+  { title: "Network Intern", company: "Tech Mahindra", location: "Pune", duration: "6 months", stipend: "₹12,000/month", applyUrl: "https://careers.techmahindra.com/" },
+
+  // Government & Research
+  { title: "DRDO Project Trainee", company: "DRDO", location: "Delhi", duration: "6 months", stipend: "₹20,000/month", applyUrl: "https://rac.gov.in/" },
   { title: "AI Research Intern", company: "IIT Madras", location: "Chennai", duration: "2 months", stipend: "₹15,000/month", applyUrl: "https://internshala.com/internships/internship-in-chennai" },
+  { title: "Space Tech Intern", company: "ISRO", location: "Bangalore", duration: "2 months", stipend: "₹10,000/month", applyUrl: "https://www.isro.gov.in/Careers.html" },
+  { title: "Research Intern", company: "CSIR Labs", location: "Multiple", duration: "2 months", stipend: "₹10,000/month", applyUrl: "https://www.csir.res.in/" },
+  { title: "Biotech Intern", company: "IISc Bangalore", location: "Bangalore", duration: "2 months", stipend: "₹12,000/month", applyUrl: "https://iisc.ac.in/admissions/" },
+
+  // Finance & Consulting
+  { title: "Investment Banking Intern", company: "Goldman Sachs", location: "Bangalore", duration: "3 months", stipend: "₹70,000/month", applyUrl: "https://www.goldmansachs.com/careers/students/programs/india/" },
+  { title: "Risk Analytics Intern", company: "JP Morgan", location: "Mumbai", duration: "3 months", stipend: "₹60,000/month", applyUrl: "https://careers.jpmorgan.com/in/en/students/programs" },
+  { title: "Strategy Intern", company: "McKinsey", location: "Delhi", duration: "3 months", stipend: "₹80,000/month", applyUrl: "https://www.mckinsey.com/careers/search-jobs?query=intern&locations=India" },
+  { title: "Audit Intern", company: "Deloitte", location: "Mumbai", duration: "3 months", stipend: "₹30,000/month", applyUrl: "https://www2.deloitte.com/in/en/careers/students.html" },
+  { title: "Tax Intern", company: "EY India", location: "Delhi", duration: "3 months", stipend: "₹25,000/month", applyUrl: "https://www.ey.com/en_in/careers/students" },
+
+  // Design & Content
+  { title: "UI/UX Design Intern", company: "Figma", location: "Remote", duration: "3 months", stipend: "₹50,000/month", applyUrl: "https://www.figma.com/careers/" },
+  { title: "Graphic Design Intern", company: "Canva", location: "Remote", duration: "3 months", stipend: "₹35,000/month", applyUrl: "https://www.canva.com/careers/" },
+  { title: "Content Writing Intern", company: "Unacademy", location: "Remote", duration: "3 months", stipend: "₹15,000/month", applyUrl: "https://unacademy.com/careers" },
+  { title: "Video Editing Intern", company: "ShareChat", location: "Bangalore", duration: "3 months", stipend: "₹20,000/month", applyUrl: "https://sharechat.com/careers" },
 ];
 
 export default function Internships() {
