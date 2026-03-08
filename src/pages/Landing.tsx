@@ -127,9 +127,9 @@ export default function Landing() {
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Footprints className="w-5 h-5 text-primary" />
-            <span className="font-bold">Future Steps</span>
+            <span className="font-bold">PathFinder</span>
           </div>
-          <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} Future Steps. Empowering informed career choices.</p>
+          <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} PathFinder. Empowering informed career choices.</p>
         </div>
       </footer>
     </div>

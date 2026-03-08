@@ -51,7 +51,7 @@ export default function Login() {
         >
           <Link to="/" className="flex items-center gap-2 mb-8 hover-scale inline-flex">
             <Footprints className="w-8 h-8 text-primary" />
-            <span className="font-bold text-xl text-gradient-primary">Future Steps</span>
+            <span className="font-bold text-xl text-gradient-primary">PathFinder</span>
           </Link>
 
           <h1 className="text-3xl font-bold mb-2">Welcome back</h1>
