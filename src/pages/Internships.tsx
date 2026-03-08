@@ -134,25 +134,14 @@ export default function Internships() {
                     className="pl-9"
                   />
                 </div>
-                <Select value={locationFilter} onValueChange={setLocationFilter}>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Location" />
+                <Select value={streamFilter} onValueChange={setStreamFilter}>
+                  <SelectTrigger className="w-[200px]">
+                    <SelectValue placeholder="Stream" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Locations</SelectItem>
-                    {allLocations.map(loc => (
-                      <SelectItem key={loc} value={loc}>{loc}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <Select value={durationFilter} onValueChange={setDurationFilter}>
-                  <SelectTrigger className="w-[160px]">
-                    <SelectValue placeholder="Duration" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Durations</SelectItem>
-                    {allDurations.map(dur => (
-                      <SelectItem key={dur} value={dur}>{dur}</SelectItem>
+                    <SelectItem value="all">All Streams</SelectItem>
+                    {streamFilters.map(s => (
+                      <SelectItem key={s.label} value={s.label}>{s.label}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
