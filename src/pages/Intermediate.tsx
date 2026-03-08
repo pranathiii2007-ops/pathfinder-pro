@@ -20,28 +20,28 @@ const engineeringBranches = [
 ];
 
 const medicalPaths = [
-  { name: "MBBS → Specialization (MD/MS)", description: "General Medicine, Surgery, Cardiology, Neurology, Orthopedics, Gynecology", salary: "₹10-50+ LPA" },
-  { name: "BDS → MDS", description: "Orthodontics, Oral Surgery, Prosthodontics, Periodontics", salary: "₹6-20 LPA" },
-  { name: "B.Pharm → M.Pharm / MBA", description: "Pharma industry, Drug Development, Clinical Research", salary: "₹4-15 LPA" },
-  { name: "B.Sc Nursing → M.Sc / Administration", description: "Hospital management, specialized nursing, public health", salary: "₹4-12 LPA" },
-  { name: "BAMS/BHMS → Practice", description: "Ayurveda/Homeopathy doctor, wellness centers, research", salary: "₹4-15 LPA" },
-  { name: "Biotechnology → Research / Industry", description: "Genetic engineering, biopharmaceuticals, agricultural biotech", salary: "₹5-18 LPA" },
+  { name: "MBBS → Specialization (MD/MS)", description: "General Medicine, Surgery, Cardiology, Neurology, Orthopedics, Gynecology", salary: "₹10-50+ LPA", href: "/careers/medicine" },
+  { name: "BDS → MDS", description: "Orthodontics, Oral Surgery, Prosthodontics, Periodontics", salary: "₹6-20 LPA", href: "/careers/dentistry" },
+  { name: "B.Pharm → M.Pharm / MBA", description: "Pharma industry, Drug Development, Clinical Research", salary: "₹4-15 LPA", href: "/careers/pharmacy" },
+  { name: "B.Sc Nursing → M.Sc / Administration", description: "Hospital management, specialized nursing, public health", salary: "₹4-12 LPA", href: "/careers/nursing" },
+  { name: "BAMS/BHMS → Practice", description: "Ayurveda/Homeopathy doctor, wellness centers, research", salary: "₹4-15 LPA", href: "/careers/medicine" },
+  { name: "Biotechnology → Research / Industry", description: "Genetic engineering, biopharmaceuticals, agricultural biotech", salary: "₹5-18 LPA", href: "/careers/biotech" },
 ];
 
 const commercePaths = [
-  { name: "CA (Chartered Accountancy)", stages: "Foundation → Inter → Final → Articleship", salary: "₹8-30 LPA", duration: "4-5 years" },
-  { name: "MBA (Post B.Com/BBA)", stages: "B.Com/BBA → CAT/MAT → MBA", salary: "₹10-35 LPA", duration: "2 years (after graduation)" },
-  { name: "CS (Company Secretary)", stages: "Foundation → Executive → Professional", salary: "₹6-20 LPA", duration: "3-4 years" },
-  { name: "CMA (Cost & Management Accountant)", stages: "Foundation → Intermediate → Final", salary: "₹6-18 LPA", duration: "3-4 years" },
-  { name: "CFA / FRM (Finance)", stages: "B.Com → CFA Level 1/2/3", salary: "₹12-50 LPA", duration: "2-3 years" },
+  { name: "CA (Chartered Accountancy)", stages: "Foundation → Inter → Final → Articleship", salary: "₹8-30 LPA", duration: "4-5 years", href: "/careers/ca" },
+  { name: "MBA (Post B.Com/BBA)", stages: "B.Com/BBA → CAT/MAT → MBA", salary: "₹10-35 LPA", duration: "2 years (after graduation)", href: "/careers/mba" },
+  { name: "CS (Company Secretary)", stages: "Foundation → Executive → Professional", salary: "₹6-20 LPA", duration: "3-4 years", href: "/careers/cs" },
+  { name: "CMA (Cost & Management Accountant)", stages: "Foundation → Intermediate → Final", salary: "₹6-18 LPA", duration: "3-4 years", href: "/careers/cma" },
+  { name: "CFA / FRM (Finance)", stages: "B.Com → CFA Level 1/2/3", salary: "₹12-50 LPA", duration: "2-3 years", href: "/careers/finance" },
 ];
 
 const artsPaths = [
-  { name: "Law (LLB / BA LLB)", path: "CLAT → 5-year BA LLB or 3-year LLB", career: "Advocate, Corporate Lawyer, Judge", salary: "₹5-30 LPA" },
-  { name: "Civil Services (IAS/IPS)", path: "Graduation → UPSC CSE → Training", career: "IAS, IPS, IFS, IRS Officer", salary: "₹8-20 LPA + Perks" },
-  { name: "Journalism (BJMC)", path: "BJMC → Media industry / PG Diploma", career: "Journalist, Anchor, Editor, PR", salary: "₹4-15 LPA" },
-  { name: "Psychology (BA → MA → MPhil)", path: "BA Psychology → MA → RCI License", career: "Psychologist, Counselor, Therapist", salary: "₹4-15 LPA" },
-  { name: "Design (B.Des / NID)", path: "NID DAT / NIFT → B.Des", career: "UX Designer, Fashion Designer, Graphic Designer", salary: "₹5-20 LPA" },
+  { name: "Law (LLB / BA LLB)", path: "CLAT → 5-year BA LLB or 3-year LLB", career: "Advocate, Corporate Lawyer, Judge", salary: "₹5-30 LPA", href: "/careers/law" },
+  { name: "Civil Services (IAS/IPS)", path: "Graduation → UPSC CSE → Training", career: "IAS, IPS, IFS, IRS Officer", salary: "₹8-20 LPA + Perks", href: "/careers/civil-services" },
+  { name: "Journalism (BJMC)", path: "BJMC → Media industry / PG Diploma", career: "Journalist, Anchor, Editor, PR", salary: "₹4-15 LPA", href: "/careers/journalism" },
+  { name: "Psychology (BA → MA → MPhil)", path: "BA Psychology → MA → RCI License", career: "Psychologist, Counselor, Therapist", salary: "₹4-15 LPA", href: "/careers/psychology" },
+  { name: "Design (B.Des / NID)", path: "NID DAT / NIFT → B.Des", career: "UX Designer, Fashion Designer, Graphic Designer", salary: "₹5-20 LPA", href: "/careers/design" },
 ];
 
 export default function Intermediate() {
@@ -115,10 +115,17 @@ export default function Intermediate() {
             <TabsContent value="medical">
               <div className="grid md:grid-cols-2 gap-4">
                 {medicalPaths.map((path, i) => (
-                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-card rounded-xl p-6 border border-border hover-lift">
-                    <h3 className="font-bold text-lg mb-2">{path.name}</h3>
-                    <p className="text-muted-foreground text-sm mb-3">{path.description}</p>
-                    <span className="text-xs bg-success/10 text-success px-2 py-1 rounded-full font-medium">{path.salary}</span>
+                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+                    <Link to={path.href}>
+                      <div className="group bg-card rounded-xl p-6 border border-border hover-lift h-full">
+                        <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">{path.name}</h3>
+                        <p className="text-muted-foreground text-sm mb-3">{path.description}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs bg-success/10 text-success px-2 py-1 rounded-full font-medium">{path.salary}</span>
+                          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                        </div>
+                      </div>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
@@ -127,17 +134,22 @@ export default function Intermediate() {
             <TabsContent value="commerce">
               <div className="space-y-4">
                 {commercePaths.map((path, i) => (
-                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-card rounded-xl p-6 border border-border hover-lift">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      <div>
-                        <h3 className="font-bold text-lg">{path.name}</h3>
-                        <p className="text-muted-foreground text-sm mt-1">{path.stages}</p>
+                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+                    <Link to={path.href}>
+                      <div className="group bg-card rounded-xl p-6 border border-border hover-lift">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                          <div>
+                            <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{path.name}</h3>
+                            <p className="text-muted-foreground text-sm mt-1">{path.stages}</p>
+                          </div>
+                          <div className="flex items-center gap-4">
+                            <span className="text-xs bg-success/10 text-success px-3 py-1.5 rounded-full font-medium">{path.salary}</span>
+                            <span className="text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-full font-medium">{path.duration}</span>
+                            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex gap-4">
-                        <span className="text-xs bg-success/10 text-success px-3 py-1.5 rounded-full font-medium">{path.salary}</span>
-                        <span className="text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-full font-medium">{path.duration}</span>
-                      </div>
-                    </div>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
@@ -146,11 +158,18 @@ export default function Intermediate() {
             <TabsContent value="arts">
               <div className="space-y-4">
                 {artsPaths.map((path, i) => (
-                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-card rounded-xl p-6 border border-border hover-lift">
-                    <h3 className="font-bold text-lg mb-1">{path.name}</h3>
-                    <p className="text-muted-foreground text-sm mb-1"><strong>Path:</strong> {path.path}</p>
-                    <p className="text-muted-foreground text-sm mb-3"><strong>Careers:</strong> {path.career}</p>
-                    <span className="text-xs bg-success/10 text-success px-2 py-1 rounded-full font-medium">{path.salary}</span>
+                  <motion.div key={path.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+                    <Link to={path.href}>
+                      <div className="group bg-card rounded-xl p-6 border border-border hover-lift">
+                        <h3 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">{path.name}</h3>
+                        <p className="text-muted-foreground text-sm mb-1"><strong>Path:</strong> {path.path}</p>
+                        <p className="text-muted-foreground text-sm mb-3"><strong>Careers:</strong> {path.career}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs bg-success/10 text-success px-2 py-1 rounded-full font-medium">{path.salary}</span>
+                          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                        </div>
+                      </div>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
