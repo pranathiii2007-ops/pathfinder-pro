@@ -146,12 +146,13 @@ export default function CareerQuiz() {
       await streamChat({
         messages: [...prev, userMsg],
         onDelta: upsert,
-        onDone: () => setIsLoading(false),
-        onError: (msg) => { setError(msg); setIsLoading(false); },
+        onDone: () => { setIsLoading(false); sendingRef.current = false; },
+        onError: (msg) => { setError(msg); setIsLoading(false); sendingRef.current = false; },
       });
     } catch {
       setError("Connection failed. Please try again.");
       setIsLoading(false);
+      sendingRef.current = false;
     }
   };
 
