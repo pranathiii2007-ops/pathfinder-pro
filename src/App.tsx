@@ -13,8 +13,8 @@ import Dashboard from "./pages/Dashboard";
 import Streams from "./pages/Streams";
 import StreamDetail from "./pages/StreamDetail";
 import Intermediate from "./pages/Intermediate";
-import BTech from "./pages/BTech";
 import Careers from "./pages/Careers";
+import CareerDetail from "./pages/CareerDetail";
 import Colleges from "./pages/Colleges";
 import Internships from "./pages/Internships";
 import Courses from "./pages/Courses";
@@ -53,9 +53,8 @@ const App = () => {
               <Route path="/streams" element={<Streams />} />
               <Route path="/streams/:streamId" element={<StreamDetail />} />
               <Route path="/intermediate" element={<Intermediate />} />
-              <Route path="/btech" element={<BTech />} />
               <Route path="/careers" element={<Careers />} />
-              <Route path="/careers/:careerId" element={<Careers />} />
+              <Route path="/careers/:careerId" element={<CareerDetail />} />
               <Route path="/colleges" element={<Colleges />} />
               <Route path="/internships" element={<Internships />} />
               <Route path="/courses" element={<Courses />} />
