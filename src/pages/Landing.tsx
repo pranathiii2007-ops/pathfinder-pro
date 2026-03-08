@@ -84,40 +84,42 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* AI Career Guide CTA */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="relative rounded-2xl overflow-hidden border border-border">
-              <div className="absolute inset-0 gradient-hero" />
-              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-              <div className="relative flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
-                <div className="w-20 h-20 rounded-2xl gradient-primary flex items-center justify-center shrink-0">
-                  <Sparkles className="w-10 h-10 text-primary-foreground" />
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <h2 className="text-2xl md:text-3xl font-bold mb-2">
-                    Not Sure Which Career Fits You?
-                  </h2>
-                  <p className="text-muted-foreground mb-5 max-w-lg">
-                    Our AI Career Guide asks you a few quick questions about your interests, strengths, and goals — then recommends the best career paths tailored just for you.
-                  </p>
-                  <Link to="/career-quiz">
-                    <Button size="lg" className="gradient-primary text-primary-foreground gap-2 px-8">
-                      <Sparkles className="w-5 h-5" /> Try AI Career Guide <ArrowRight className="w-4 h-4" />
-                    </Button>
-                  </Link>
+      {/* AI Career Guide CTA — logged in only */}
+      {user && (
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="relative rounded-2xl overflow-hidden border border-border">
+                <div className="absolute inset-0 gradient-hero" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+                <div className="relative flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
+                  <div className="w-20 h-20 rounded-2xl gradient-primary flex items-center justify-center shrink-0">
+                    <Sparkles className="w-10 h-10 text-primary-foreground" />
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                      Not Sure Which Career Fits You?
+                    </h2>
+                    <p className="text-muted-foreground mb-5 max-w-lg">
+                      Our AI Career Guide asks you a few quick questions about your interests, strengths, and goals — then recommends the best career paths tailored just for you.
+                    </p>
+                    <Link to="/career-quiz">
+                      <Button size="lg" className="gradient-primary text-primary-foreground gap-2 px-8">
+                        <Sparkles className="w-5 h-5" /> Try AI Career Guide <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {user ? (
         <section className="py-16 relative overflow-hidden">
