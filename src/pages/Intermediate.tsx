@@ -20,12 +20,12 @@ const engineeringBranches = [
 ];
 
 const medicalPaths = [
-  { name: "MBBS → Specialization (MD/MS)", description: "General Medicine, Surgery, Cardiology, Neurology, Orthopedics, Gynecology", salary: "₹10-50+ LPA" },
-  { name: "BDS → MDS", description: "Orthodontics, Oral Surgery, Prosthodontics, Periodontics", salary: "₹6-20 LPA" },
-  { name: "B.Pharm → M.Pharm / MBA", description: "Pharma industry, Drug Development, Clinical Research", salary: "₹4-15 LPA" },
-  { name: "B.Sc Nursing → M.Sc / Administration", description: "Hospital management, specialized nursing, public health", salary: "₹4-12 LPA" },
-  { name: "BAMS/BHMS → Practice", description: "Ayurveda/Homeopathy doctor, wellness centers, research", salary: "₹4-15 LPA" },
-  { name: "Biotechnology → Research / Industry", description: "Genetic engineering, biopharmaceuticals, agricultural biotech", salary: "₹5-18 LPA" },
+  { name: "MBBS → Specialization (MD/MS)", description: "General Medicine, Surgery, Cardiology, Neurology, Orthopedics, Gynecology", salary: "₹10-50+ LPA", href: "/careers/medicine" },
+  { name: "BDS → MDS", description: "Orthodontics, Oral Surgery, Prosthodontics, Periodontics", salary: "₹6-20 LPA", href: "/careers/dentistry" },
+  { name: "B.Pharm → M.Pharm / MBA", description: "Pharma industry, Drug Development, Clinical Research", salary: "₹4-15 LPA", href: "/careers/pharmacy" },
+  { name: "B.Sc Nursing → M.Sc / Administration", description: "Hospital management, specialized nursing, public health", salary: "₹4-12 LPA", href: "/careers/nursing" },
+  { name: "BAMS/BHMS → Practice", description: "Ayurveda/Homeopathy doctor, wellness centers, research", salary: "₹4-15 LPA", href: "/careers/medicine" },
+  { name: "Biotechnology → Research / Industry", description: "Genetic engineering, biopharmaceuticals, agricultural biotech", salary: "₹5-18 LPA", href: "/careers/biotech" },
 ];
 
 const commercePaths = [
